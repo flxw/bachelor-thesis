@@ -1,0 +1,134 @@
+%************************************************
+\chapter{Introduction}\label{ch:introduction}
+%************************************************
+Money makes the world go round. That is why the sales department
+of any company is vital to its success. As Social Media platforms
+like facebook, LinkedIn and Xing have risen to success,
+they have also become relevant for sales success. As it is the case
+with every kind of information in todays connected world crowded
+with push-notifications: There is too much of it and too little
+filtering on its relevancy.
+\newline
+
+Filtering out the useless information, which is often called "noise",
+is a common problem that is tiring to tackle by hand and everyday
+again. Finding information which might hint at an interest in buying a product
+leads to an attempt at contacting the author of that information - commonly
+referred to as "Opportunity".
+\newline
+
+Thus, converting "Noise to Opportunity", is a very common struggle
+in sales departments. The principle is usually illustrated with a funnel,
+as shown and explained in figure \ref{fig:sales-funnel}.
+
+\marginpar{Converting noise to opportunity is the very tiring, repetitive task
+of finding useful information in a heap of thematically but not practically relevant data}
+
+\begin{figure}[bth]
+    %\includegraphics[width=90\linewidth]{gfx/sales-funnel}
+    \caption{The sales funnel for reducing noise to opportunity. Too much
+    information with a few useful bits in it goes in at the top and gets
+    reduced to promising pieces that might be converted to a sales opportunity}
+    \label{fig:sales-funnel}
+\end{figure}
+
+The bachelor project M1 tackled this problem by applying demand-based filtering.
+With product descriptions in mind that the department wants to sell,
+the information is delivered to each employee ranked by relevancy.
+\newline
+
+\marginpar{The bachelor project is a two-semester project at HPI,
+where 2-7 students work together on a large software system, often for an external
+partner. In the process, expertise for the bachelor thesis is gathered. }
+
+The general principle of reducing information load by applying
+demand-based-filtering can also be tailored to fit recruiting processes. It is
+no secret that there is a heavy competition among recruiters for excellent
+technical candidates because of their scarcity. It is a resonable thought
+to gain a competitive edge by pre-analyzing technical candidates
+before considering them for an interview.
+\newline
+
+As previous studies have shown, the awareness of their source
+code being public increases developer determination
+to produce top quality source code\cite{md:2013}.
+Public source code repositories have grown in importance for recruting
+staff, which shows that there is a practical need for determining
+employee fit to certain positions before making first contact.
+
+\section{Contribution}
+% See phils thesis for a very good introduction on what he has built
+% take job advertisements and find developers for them
+% goal is a system similar to N2O but for recruiters and not for salespeople
+%What has been built in this thesis and what has been achieved?
+%GitHub provides users with the possibility of
+%publicly hosting source code as well as collaborating with other users on a
+%project-scale or even an organization-scale. The source code itself as well
+%as the whole git history is publicly available and provides a solid base
+%for analysis. Because of its widespread adoption, this platform has been chosen
+%for the analysis. Of course, the principle of analyzing source code and matching
+%it to job postings is very general and could be applied
+%to any kind of repository.
+
+\section{Research Questions} \label{sec:research-questions}
+
+To guide our research, we formulated the following research questions.
+
+\subsection{How can developer skills be measured?}\label{subsec:dev-skill-measurement}
+We argue that a measurement metric that is common to most job opening
+descriptions must be found. This reduces the need for a lot of customization
+on the ad and allows analysis of pre-existing data.
+Once such a metric has been derived, the next part of answering this question
+naturally follows.
+\newline
+
+All developers will be matched against the same job advertisements and thus
+they all need to be measured using the same method. The metric that
+has been derived from the advertisements will now need to be measured
+on each developer - provided he or she can provide the necessary data.
+Thus the practicability of a metric depends largely on the availability
+of measureable data.
+
+\subsection{Can qualified candidates be found automatically?}\label{subsec:measurement-quality}
+It is possible to rank developers by suitability for the advertised job,
+once the metric is in place. The qualities of the ranking and the metric
+are ultimately determined by whether or not the right candidates land at
+the top.
+
+%\section{Future Work}
+
+\pdfbookmark[1]{Related Work}{Related Work}
+\section{Related Work}
+
+Jennifer Marlow and Laura Dabbish\cite{md:2013} from Carnegie Mellon
+University have conducted an extensive study with about
+200 participants, and found out that employers value
+open source coder profiles greatly (page 4). Further in the document,
+the two authors prove that developers are conscious of the fact
+that their source code is public and thus try to deliver it with
+great care. This hints at the chance being high that the code used for measurements
+is written with care and thoughts have gone into the design of it.
+Altogether their research has proven, that both public sourcecode repositories
+are relevant for making recruitment decisions and the developers
+are aware of this fact and try to deliver their best.
+\newline
+
+Philipp Giese has proven in his master thesis\cite{pg:2014} that
+static code analysis is suitable for identifying personal skillsets.
+He built a framework called \textit{Analyzr}\footnote{\url{https://github.com/frontendphil/analyzr}}
+that analyzes the complete history from a git or SVN source code repository.
+Based on the code, different metrics are calculated, from which statements about
+code complexity and refactoring needs can be derived. It is also possible
+to make statements about developer capabilites and areas of expertise.
+Thus, given a little context about the analyzed source code, it would possible
+to say that \glqq Developer X is mainly a backend developer and the single maintainer of module Y\grqq.
+\newline
+
+Philipp's development findings are supported by that of
+Aftab Iqbal and Michael Hausenblas, who have analyzed different
+source code repositories for common developers\cite{ih:2012}.
+They have done so using relatively little local code analysis and relied
+on on-the-fly analysis from retrieved RDF data. Their work
+has made it possible to find out whether different open source projects shared developers
+and contained useful information as to possible methods of retrieving authors
+and eleminating duplicates caused by different e-mail addresses, for example.
