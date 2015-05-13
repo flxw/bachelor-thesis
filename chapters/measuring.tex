@@ -1,6 +1,6 @@
 \chapter{Taking measurements}
 This chapter is going to deal with finding an answer
-to the question asked in section \ref{subsec:dev-skill-measurement},
+to the question asked in section \ref{subsec:dev-skill-measurement}:
 how to measure developer skill requirements from job advertisements.
 
 \section{Measuring job skill requirements}
@@ -8,12 +8,12 @@ how to measure developer skill requirements from job advertisements.
 %than the usual interview effort. In addition to personality
 %tests that confirm that the candidate fits into the company
 %culture, technical knowledge needs to be thoroughly checked.
-
+%
 %This is done in small programming exercises (either on-site or
 %outsourced), examplary projects or by directly asking technically
-%related questions.
+%related questions during the interview itself.
 
-\subsection{Job posting aspects}
+\section{Job posting aspects}
 By manually analyzing job offers from the Github Jobs
 site\footnote{https://jobs.github.com}, it became clear that most
 job offers consisted out of three parts:
@@ -25,12 +25,11 @@ job offers consisted out of three parts:
 \end{itemize}
 
 Most startup job postings put the emphasis on candidate personality and
-willingness to learn, as tasks are not yet so clearly defined at this stage
-of company life. For this reason more postings from larger, established
-companies were taken into account.
+willingness to learn, as tasks and roles are not yet so clearly defined
+at this stage of company life. For this reason mainly postings from larger, established companies were taken into account.
+\newline
 
-
-Of these job postings, for example GitHub and Apple had very
+Inside this subset of openings, for example GitHub and Apple had very
 specific, measureable technical requirements:
 \newline
 
@@ -51,7 +50,91 @@ GitHub wants candidates to have experience
 
 Optional qualifications were always mentioned in conjunction with the
 word "bonus". Presumably, candidates who receive bonuses are more
-likely to get hired.
-
+likely to get hired. Proficiency in a certain language is very well
+verifiable by analyzing written source code, a technique that will
+be looked at in detail in the next section.
 
 \section{Determining developer skill}
+Generally speaking, mastery of something is called a \textit{skill}.
+Thus, a developer can call mastery of a technology a skill.
+Measureable is only the code that the developer produces, which
+is why this code will form the basis for analyzing the individual
+developer skillset. This has the advantage that the analysis
+can take historical data from the code repository into account
+and be executed without the developers presence.
+
+\section{Data source}
+Analyzing closed source repositories is not an option, as there are lots
+of privacy and security concerns. That is why the analysis will be
+restricted to open source repositories.
+\newline
+
+GitHub is a popular open source community which enjoys high popularity
+and hosts the source code of a lot of projects with a high impact.
+These include Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}.
+More importantly, technical recruiters value profiles in such communities
+greatly from applicants\cite{md:2013}.
+
+\marginpar{96 out of 97 participants at HPI use GitHub.
+608 HPI students and alumni were asked in this survey.}
+
+Judging from non-representative survey results, chances are that most
+passionate software developers own a GitHub account.\footnote{It should be
+noted that HPI teaches IT-Systems Engineering \textit{exclusively}. The
+survey reached 608 people.}
+
+\section{Common developer productivity measures}
+Estimating software development efforts is a task that
+came up as early as 1981, when Barry W. Boehm invented the \textit{
+Constructive Cost Model} (COCOMO)
+\footnote{\url{http://en.wikipedia.org/wiki/COCOMO}}.
+It is a simple measure for estimating
+costs based on two main factors: developer count and development time.
+\newline
+
+It assumes that more developers will take \textit{less} time to produce the
+same amount of code, measured in SLOCS\footnote{SLOCS is an abbreviation for
+\textit{source lines of code}}. This may be lead to the wrong assumption that
+adding developers finishes a project faster, a fact that the
+classic book \textit{The Mythical Man-Month}\cite{fb:1975} clearly falsifies.
+\newline
+
+Research on other measurement methods clearly shows that measuring
+function points\footnote{\url{http://en.wikipedia.org/wiki/Weighted_Micro_Function_Points}}\footnote{\url{http://www.projectcodemeter.com/cost_estimation/index.html}}
+is state-of-the-art for measuring software size and complexity.
+A function point is the unit of measurement that expresses the amount of
+business functionality a system provides to a user. This is a wholistic
+measure, meaning that it analyzes the code as-is and does not take into
+account individual contributions.
+
+Clearly, measuring function points brings comparably better results
+than counting SLOCs as it is programming language-agnostic and measures
+the value of user-relevant program features, which makes it more
+business-relevant.
+On the other hand, function points do not reflect individual
+contributions or skill in any way.
+
+Most large-scale projects make use of more than one programming language
+or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}},
+which is why language-detection is vital for deriving a metric.
+\newline
+
+Clearly, measuring development effort that has gone into a project as a whole\footnote{\url{http://www.locmetrics.com/alternatives.html}}
+is not the approach we need, because it does not take historical data from
+version control systems  into account. This is why we constructed our own
+approach in the following section.
+
+\section{Constructing a custom metric}
+the job offers ask for x+ years of experience
+everyday, developer can write y lines of code
+by counting how many lines of code he has seen and written, one can estimate
+the lines he has "experienced"
+
+there are different measures for each language and drawbacks of the SLOC approach
+should be highlighted
+
+summing up these lines and dividing them through the number of lines a developer can produce daily, on has a very rough number of how experienced one is with said language
+
+analyze patches from commits
+analyze language written in patches
+lines per day / normalization for each language
