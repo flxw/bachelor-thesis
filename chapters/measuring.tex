@@ -83,25 +83,25 @@ passionate software developers own a GitHub account.\footnote{It should be
 noted that HPI teaches IT-Systems Engineering \textit{exclusively}. The
 survey reached 608 people.}
 
-\section{Common developer productivity measures}
+\section{Software size measurement methods}
 Estimating software development efforts is a task that
 came up as early as 1981, when Barry W. Boehm invented the \textit{
-Constructive Cost Model} (COCOMO)
-\footnote{\url{http://en.wikipedia.org/wiki/COCOMO}}.
+Constructive Cost Model} (COCOMO)\footnote{\url{http://en.wikipedia.org/wiki/COCOMO}}.
 It is a simple measure for estimating code cost
 based on two main factors: developer count and development time.
 \newline
 
 It assumes that more developers will take \textit{less} time to produce the
 same amount of code, measured in SLOCS\footnote{SLOCS is an abbreviation for
-\textit{source lines of code}}. This may be lead to the wrong assumption that
-adding developers finishes a project faster, a fact that the
-classic book \textit{The Mythical Man-Month}\cite{fb:1975} clearly falsifies.
+\textit{source lines of code}}.
+This leads to the assumption that more developers produce more code.
+The project itself does not grow, and thus more developers will finish it faster -
+an epic wrong assumption of historical importance\cite{fb:1975}.
 \newline
 
 Research on other measurement methods clearly shows that measuring
 function points\footnote{\url{http://en.wikipedia.org/wiki/Weighted_Micro_Function_Points}}\footnote{\url{http://www.projectcodemeter.com/cost_estimation/index.html}}
-is state-of-the-art for measuring software size and complexity.
+is state-of-the-art for measuring software size and complexity.\cite{linkedin:functionpointstandard}
 A function point is the unit of measurement that expresses the amount of
 business functionality a system provides to a user. This is a wholistic
 measure, meaning that it analyzes the code as-is and does not take into
@@ -110,19 +110,23 @@ account individual contributions.
 Clearly, measuring function points brings comparably better results
 than counting SLOCs as it is programming language-agnostic and measures
 the value of user-relevant program features, which makes it more
-business-relevant.
-On the other hand, function points do not reflect individual
-contributions or skill in any way.
-
-Most large-scale projects make use of more than one programming language
-or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}},
-which is why language-detection is vital for deriving a metric.
+business-relevant. Yet, SLOCS remain present in many companies as processes
+have been formed around this. Some companies even resorted to paying
+bonuses for higher line counts\cite{am:2009}.
 \newline
 
-Clearly, measuring development effort that has gone into a project as a whole\footnote{\url{http://www.locmetrics.com/alternatives.html}}
+Most large-scale projects make use of more than one programming language
+or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-detection
+needs to be part of our metric. A single wrong assumption will falsify
+a potentially big result and reduce value of the analysis.
+\newline
+
+Also, measuring development effort that has gone into a project as a
+whole\footnote{\url{http://www.locmetrics.com/alternatives.html}}
 is not the approach we need, because it does not take historical data from
 version control systems  into account. This is why we constructed our own
-approach in the following section.
+approach in the following section, building upon SLOC,
+as it is the only metric that allows measuring partial code additions.
 
 \section{Constructing a custom metric}
 the job offers ask for x+ years of experience
@@ -138,3 +142,9 @@ summing up these lines and dividing them through the number of lines a developer
 analyze patches from commits
 analyze language written in patches
 lines per day / normalization for each language
+
+According to Tom
+DeMarco, “you can’t manage what you
+can’t measure” \cite{tdm:1986}
+
+\section{Threats to validity}

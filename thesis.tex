@@ -62,6 +62,7 @@
 \raggedbottom
 \selectlanguage{american} % american ngerman
 %\renewcommand*{\bibname}{new name}
+\renewcommand{\PrelimText}{}
 %\setbibpreamble{}
 \pagenumbering{roman}
 \pagestyle{plain}
@@ -82,23 +83,11 @@
 % Mainmatter
 %*******************************************************
 \pagenumbering{arabic}
-%\setcounter{page}{90}
-% use \cleardoublepage here to avoid problems with pdfbookmark
-%\cleardoublepage
-%\part{Some Kind of Manual}
 \input{chapters/introduction}
-%\ctparttext{You can put some informational part preamble text here.
-%Illo principalmente su nos. Non message \emph{occidental} angloromanic
-%da. Debitas effortio simplificate sia se, auxiliar summarios da que,
-%se avantiate publicationes via. Pan in terra summarios, capital
-%interlingua se que. Al via multo esser specimen, campo responder que
-%da. Le usate medical addresses pro, europa origine sanctificate nos se.}
-%\clearpage
-%\part{The Showcase}
 \input{chapters/measuring}
-%\addtocontents{toc}{\protect\clearpage} % <--- just debug stuff, ignore
-%\input{chapters/chapter03}
-%\input{multiToC} % <--- just debug stuff, ignore for your documents
+\input{chapters/implementation}
+\input{chapters/validation}
+\input{chapters/conclusion}
 % ********************************************************************
 % Backmatter
 %*******************************************************
