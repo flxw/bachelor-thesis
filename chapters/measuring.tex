@@ -3,7 +3,7 @@ This chapter is going to deal with finding an answer
 to the question asked in section \ref{subsec:dev-skill-measurement}:
 how to measure developer skill requirements from job advertisements.
 
-\section{Measuring job skill requirements}
+%\section{Measuring job skill requirements}
 %As stated in the abstract, technical interviews require more
 %than the usual interview effort. In addition to personality
 %tests that confirm that the candidate fits into the company
@@ -99,8 +99,9 @@ A user provides the following relevant information:
   \item Availability for hire
   \item E-Mail addresses which were used for committing
 \end{itemize}
+\vspace{2em}
 
-A repository contains the development history of a project, which is subdivided into steps,
+\noindent A repository contains the development history of a project, which is subdivided into steps,
 called \textit{commits}. In the following, we will be dealing with commits,
 which carry the following attributes relevant for us (also depicted in Figure \ref{fig:commit}):
 
@@ -163,7 +164,7 @@ is not the approach we need, because it does not take historical data from
 version control systems into account and makes no distinction between
 individual contributions.
 
-\subsection{A custom metric}
+\section{A custom metric}
 The analyzed job offers ask for a minimum experience level with a certain technology.
 Common code metrics however focus on code quality, and less on individual developer
 productivity. All developer-focused metrics are seen with contempt
@@ -176,27 +177,27 @@ Most large-scale projects make use of more than one programming language
 or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity
 needs to be part of our metric.
 
-% \subsection{A naive approach}
-% The data that was available to us consisted strictly out of commits and
-% code statistics. Two assumptions that came to our mindes were the following:
-%
-% \begin{itemize}
-%   \item The more experienced a developer, the more code he has seen and written.
-%         This experience maps to a timespan worth working with this technology.
-%   \item Every human being is different, and as such, developers might have different learning paces.
-%         To attribute these, it makes sense to have experience as an abstract measure.
-%         This allows the metric to rank fast learners and slow learners on the same level,
-%         where the slow learner simply had more time.
-% \end{itemize}
-%
-% Sadly, the only measurement we were able to make is the number of lines written.
-% As stated in section XYZ, Measuring SLOC is widely regarded as a bad practice.
-% It simply cannot be determined whether the writing of a line X has taken
-% ten seconds or five hours. And again, the kind of language used plays a huge role.
-% After lots of time spent into this, we diverted to another approach
-%
-% there are different measures for each language and drawbacks of the SLOC approach
-% should be highlighted
+\subsection{A naive approach}
+The data that was available to us consisted strictly out of commits and
+code statistics. Two assumptions that came to our mindes were the following:
+
+\begin{itemize}
+ \item The more experienced a developer, the more code he has seen and written.
+       This experience maps to a timespan worth working with this technology.
+ \item Every human being is different, and as such, developers might have different learning paces.
+       To attribute these, it makes sense to have experience as an abstract measure.
+       This allows the metric to rank fast learners and slow learners on the same level,
+       where the slow learner simply had more time.
+\end{itemize}
+
+Sadly, the only measurement we were able to make is the number of lines written.
+As stated in section XYZ, Measuring SLOC is widely regarded as a bad practice.
+It simply cannot be determined whether the writing of a line X has taken
+ten seconds or five hours. And again, the kind of language used plays a huge role.
+After lots of time spent into this, we diverted to another approach
+
+there are different measures for each language and drawbacks of the SLOC approach
+should be highlighted
 
 \subsection{Technical fit}
 From the data that each commit sports it is possible to say when a developer
@@ -265,10 +266,16 @@ might be a hint of importance and social acceptance.
 \newline
 
 GitHub used to provide users with the possibility to write about themselves.
-Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/}}.
+Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/}}, which is unfortunately a
+remnant of the removal. This data will be removed in a future version,
+which was confirmed upon question (see figure \ref{fig:gapitweet}).
 
-data to get a feeling for popularity and cultural fit.
-...According to Tom DeMarco, "you can't manage what you can't measure" \cite{tdm:1986}
+\begin{figure}
+  \centering
+  \includegraphics[width=25em]{gfx/githubapi_tweet.png}
+  \caption{The tweet that confirmed that the \textit{bio} field is scheduled for removal}
+  \label{fig:gapitweet}
+\end{figure}
 
 \section{Threats to validity}\label{sec:threatstovalidity}
 For the metric to deliver meaningful results, the base data

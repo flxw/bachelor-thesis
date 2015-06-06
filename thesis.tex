@@ -38,7 +38,7 @@
 %		 * [high] Check this out: http://www.golatex.de/koma-script-warnung-in-verbindung-mit-listings-package-t2058.html
 %    * [medium] mathbb in section-titles/chapter-titles => disappears somehow in headlines!!!
 % **************************************************************************************************************
-\documentclass[ twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
+\documentclass[ openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
                 footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
                 BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
                 ngerman,american,openany
@@ -72,16 +72,17 @@
 %\input{frontbackmatter/dirty-titlepage}
 \input{frontbackmatter/titlepage}
 \input{frontbackmatter/titleback}
-\cleardoublepage\input{frontbackmatter/dedication}
+%\cleardoublepage\input{frontbackmatter/dedication}
 %\cleardoublepage\input{frontbackmatter/foreword}
-\cleardoublepage\input{frontbackmatter/abstract}
+\input{frontbackmatter/abstract}
 %\cleardoublepage\input{frontbackmatter/publication}
-\cleardoublepage\input{frontbackmatter/acknowledgments}
+\input{frontbackmatter/acknowledgments}
 \pagestyle{scrheadings}
-\cleardoublepage\input{frontbackmatter/contents}
+%\input{frontbackmatter/contents}
 %********************************************************************
 % Mainmatter
 %*******************************************************
+\part{Thesis}
 \pagenumbering{arabic}
 \input{chapters/introduction}
 \input{chapters/measuring}
@@ -92,9 +93,9 @@
 % Backmatter
 %*******************************************************
 \appendix
-\cleardoublepage
+%\cleardoublepage
 \part{Appendix}
-\input{chapters/chapter0A}
+%\input{chapters/chapter0A}
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************

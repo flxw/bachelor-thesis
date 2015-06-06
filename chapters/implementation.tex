@@ -40,12 +40,13 @@ and analyzed. This process is also depicted in figure \ref{fig:regprocess}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=25em]{gfx/registersequence.png}
+  \includegraphics[width=35em]{gfx/registersequence.png}
   \caption{The interplay of the three processes after the OAuth 2.0 dance has been completed.}
   \label{fig:regprocess}
 \end{figure}
 
 \subsection{Analyzer}
+%TODO rewrite because of restructuring...
 The analyzer component of the application handles two slightly different
 tasks. First, it has to schedule an initial clone of all repositories
 a user owns upon his registration. Then, it has has to keep those local
@@ -57,9 +58,11 @@ that was used for accessing the git repository data, was
 leaking memory strongly and to counter this, a sub-process structure was
 implemented. The analyzer itself only executes management logic,
 schedules the analysis, and communicates with the hirebot process.
-For executing the analysis, it forks an \textit{analyzer-worker}
-keeps the repository up to date, runs the analysis and saves the data
-into the database.
+For executing the analysis, it forks an \textit{analyzer-worker} for each
+single repository. The worker clones or updates that repository,
+runs the analysis, saves the results into the database and terminates
+upon completion. The forks are done sequentially to avoid putting
+too much load on the system at once.
 
 \subsection{Database schema}
 The database schema of hirebot is not very complex.
