@@ -88,10 +88,18 @@ employee fit to certain positions before making first contact.
 %for the analysis. Of course, the principle of analyzing source code and matching
 %it to job postings is very general and could be applied
 %to any kind of repository.
+In this thesis we will present a platform on which recruiters can easily
+gain access to software engineering talents. The recruiters can specify
+what kind of position they want to find candidates for, and will receive
+suggestions from the userbase that has registered with the application.
+The suggestions are based on analyzed open source code repositories.
+Github will be the only source of code in our case, but it has proven
+to be sufficiently large and well-frequented for our use case.
+The analysis metric has been constructed specifically for our use case,
+because there were no suitable ones around at the time of writing.
 
 \section{Research Questions} \label{sec:research-questions}
-
-To guide our research, we formulated the following research questions.
+To guide our research, we formulated the following research questions:
 
 \subsection{How can developer skills be measured?}\label{subsec:dev-skill-measurement}
 We argue that a measurement metric that is common to most job opening
@@ -122,15 +130,19 @@ University have conducted an extensive study with about
 open source coder profiles greatly (page 4). Further in the document,
 the two authors prove that developers are conscious of the fact
 that their source code is public and thus try to deliver it with
-great care. This hints at the chance being high that the code used for measurements
-is written with care and thoughts have gone into the design of it.
-Altogether their research has proven, that both public sourcecode repositories
-are relevant for making recruitment decisions and the developers
+great care. This is relevant for us for two reasons:
+First, it proves that contribution to open source has a relevancy
+in hiring and is rewarded with recognition. And second, Marlows and Dabbishs
+research hints at the fact that developers trying hard to deliver very
+good code, because they are aware of its publicity. Because we will use
+exactly this code in our measurements, it is highly relevant that it be of good quality.
+Altogether their research has proven that both public sourcecode repositories
+are relevant for making recruitment decisions and that open source developers
 are aware of this fact and try to deliver their best.
 \newline
 
-Philipp Giese has proven in his master thesis\cite{pg:2014} that
-static code analysis is suitable for identifying personal skillsets.
+The suitability of source code analysis for the identification of personal
+skillsets has been proven in the master thesis of Philipp Giese.
 He built a framework called \textit{Analyzr}\footnote{\url{https://github.com/frontendphil/analyzr}}
 that analyzes the complete history from a git or SVN source code repository.
 Based on the code, different metrics are calculated, from which statements about
@@ -146,5 +158,19 @@ source code repositories for common developers\cite{ih:2012}.
 They have done so using relatively little local code analysis and relied
 on on-the-fly analysis from retrieved RDF data. Their work
 has made it possible to find out whether different open source projects shared developers
-and contained useful information as to possible methods of retrieving authors
-and eleminating duplicates caused by different e-mail addresses, for example.
+and contained useful methods of retrieving authors and eleminating duplicates
+caused by different e-mail addresses, for example.
+One of their primary sources of code was\textit{sourceforge}, a site that was
+popular for open source code hosting before GitHub became popular.
+Now, in 2015, sourceforge has more or less disappeared from the map of open
+source developers and does not host a lot of projects of relevance anymore.
+
+Finally, a japanese research group at the Kobe University in Tokio, seems
+to display great interest in software analytics\cite{mn:2011}. Shinsuke Matsumoto and Masahide Nakamura
+have built a web service that allowed the analysis of any SVN or git source code repository.
+They were specifically interested in creating a platform for other researchers to
+contribute their source code metrics to. The metrics are programming-language agnostic
+and very general. Unfortunately the code was badly documented and if there was documentation
+to be found, it was written in japanese. Matsumotos and Nakamuras paper
+went into deep technical detail of the inner workings of their platform.
+This knowledge was particularly helpful in the forming of an architecture for ours.
