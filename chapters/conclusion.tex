@@ -2,9 +2,50 @@
 \chapter{Conclusion}\label{ch:conclusion}
 %************************************************
 \section{Future work}
-better matching algorithm
-merging of other sources for better insight
-linkedin, xing, stackoverflow
+This application is a very basic prototype and is extensible in many directions.
+Let us start with application functionality that could be added quite easily.
+
+An account on GitHub is certainly very promising, but it is not the only
+place where one can publish code. There are GitHub-alikes like Gitorious,
+Bitbucket or GitLab and of course self-hosted git-repositories.
+While one may have made significant contributions to these codebases,
+these will not show up in the final statistics, as outlined in
+section \ref{sec:threatstovalidity}. As such, it should
+at least be possible to manually add other repositories by
+hand, or connect other platforms in a process similar
+to that used with GitHub.
+
+The connection with other platforms leads to another possible improvement.
+Instead of relying on information from a single source, it would make very
+much sense to enrich it with information from other sources. There
+are numerous job profile sites like XING\footnote{\url{http://xing.de}}
+or LinkedIn\footnote{\url{http://linkedin.com}} where users have
+published their complete curriculum vitaes. This might hint at the
+possibility of the user wanting to change his job, and his suitability for
+a position. For example a user that is found to be suitable for a data engineer
+position will might not want to leave his job at a technology consultancy
+firm - he is just developing in his own interest.
+Other interesting sources include Openhub\footnote{\url{http://openhub.net}}
+and Stackoverflow\footnote{\url{http://stackoverflow.com}}.
+\newline
+
+Lots of job advertisements also put emphasis on certain technologies.
+It does not suffice to know Javascript - specifically AngularJS (a JavaScript framework)
+needs to be well known for at least three years.
+With the current algorithm this differentiatio is not possible.
+For example, a full-stack node.js web application would consist out of three
+parts to it: Javascript, CSS and HTML. No distinction between front-end
+or backend code would be made, nor would the specific technologies be considered.
+\newline
+
+To improve the metric, it could make sense to analyze code sections
+before and after for their complexity and other quality measures.
+As proven in the master thesis of Philipp Giese \cite{pg:2014},
+it is possible to analyze the change in complexity and performance
+of code that a developer introduces with his commit.
+Now, if a developer strives to reduce complexity with his commits,
+this should be rewarded with a boost in the overall measure.
+Likewise, overcomplicating commits should punished.
 
 \section{Conclusion}
 
