@@ -71,7 +71,7 @@ restricted to open source repositories.
 \newline
 
 GitHub is a popular open source community which enjoys high popularity
-and hosts the source code repositories of a lot of high impact projects.
+and hosts the source code repositories of a lot of projects with great influence.
 These include, but are of course not limited to,
 Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}.
 More importantly, technical recruiters value profiles in such communities
@@ -95,7 +95,6 @@ A user provides the following relevant information:
 \begin{itemize}
   \item A Name
   \item The number of followers and followings
-  \item A biography with which the user describes himself
   \item A location
   \item Availability for hire
   \item E-Mail addresses which were used for committing
@@ -168,7 +167,7 @@ individual contributions.
 \section{A custom metric}
 The analyzed job offers ask for a minimum experience level with a certain technology.
 Common code metrics however focus on code quality, and less on individual developer
-productivity. All developer-focused metrics are seen with contempt
+productivity. Linecount-based metrics are seen with contempt
 by both developers and managers \footnote{citation needed!!!!}
 \newline
 
@@ -179,8 +178,8 @@ or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/lan
 needs to be part of our metric.
 
 \subsection{A naive approach}
-The data that was available to us consisted strictly out of commits and
-code statistics. Two assumptions that came to our mindes were the following:
+The data available to us consisted strictly out of commits and
+code statistics. Two assumptions that came to our minds were as follows:
 
 \begin{itemize}
  \item The more experienced a developer, the more code he has seen and written.
@@ -192,13 +191,17 @@ code statistics. Two assumptions that came to our mindes were the following:
 \end{itemize}
 
 Sadly, the only measurement we were able to make is the number of lines written.
-As stated in section XYZ, Measuring SLOC is widely regarded as a bad practice.
-It simply cannot be determined whether the writing of a line X has taken
+As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice.
+It simply cannot be determined whether the writing of a single line has taken
 ten seconds or five hours. And again, the kind of language used plays a huge role.
-After lots of time spent into this, we diverted to another approach
-
-there are different measures for each language and drawbacks of the SLOC approach
-should be highlighted
+On the one hand, a single line of ASM does take less time to write than a single line in JavaScript
+and will have very little effect on data in main memory. On the other hand, the line
+in ASM is much harder to write, because the whole memory structure needs to be understood.
+The answer which line is worth more in this case is very hard to answer.
+It is dependant on lots of factors - some measurable factors and some soft factors.
+Unfortunately, there is not a lot of research available on the topic of line-based
+measurements. Many opinionated articles exist, which was evidence enough for us
+that this approach does work out well in reality. For this reason, we diverted to another approach.
 
 \subsection{Technical fit}
 From the data that each commit sports it is possible to say when a developer
@@ -233,8 +236,9 @@ There is a downside to this, however. It rewards people who commit
 large files of source code they have not written. A good example might be
 a commit that contains the \textit{node\_modules} library folder from a
 node.js project. In a single commit, this developer will have been
-attributed thousands of lines of JavaScript. Small commits are generally
-preferred \cite{so:commitsize}
+attributed thousands of lines of JavaScript.
+
+Small commits are generallypreferred \cite{so:commitsize}
 over very large commits as they provide a better level of granularity for
 reverting\footnote{git revert} or cherry-picking\footnote{git cherry-pick}.
 For this reason, they have become more or less of a standard in
