@@ -14,8 +14,9 @@ how to measure developer skill requirements from job advertisements.
 %related questions during the interview itself.
 
 \section{Job posting aspects}
-By manually analyzing job offers from the Github Jobs
-site\footnote{https://jobs.github.com}, it became clear that most
+We manually analyzed 20 job offers from the Github Jobs
+site\footnote{https://jobs.github.com}, which hosts about 300 job offerings,
+each one valid for 30 days. It became clear that most
 job offers consisted out of three parts:
 
 \begin{itemize}
@@ -26,8 +27,10 @@ job offers consisted out of three parts:
 
 Most startup job postings put the emphasis on candidate personality and
 willingness to learn, as tasks and roles are not yet so clearly defined
-at this stage of company life. For this reason mainly postings from larger,
-established companies were taken into account.
+at this stage of company life. Phrases like \textit{"An incredibly hard worker, even when it's not so fun"}
+are quite common and describe a required mindset.
+For this reason mainly postings from larger, established companies were taken into account,
+because they demand more specifically defined roles.
 \newline
 
 Inside this subset of openings, for example GitHub and Apple had very
@@ -211,14 +214,12 @@ he has used it for the first time in general on GitHub.
 This resolution of experience is based on timestamps and not on SLOC,
 which has the disadvantage of being not accessible for fast learners
 but relieves us of the neccessity to define a mapping of SLOC to a timespan.
-By using the first and last dates \textit{d1} and \textit{d2} for commits
-with a certain language, the timespan of experience with it can easily be
-calculated, like in formula \ref{eq:timespan}. The function \textit{
-julianday} converts dates into the number of days since January 1, 4713 BC.
-It is based on the proleptic Julian calendar.
+By using the first and last dates for commits that were made with a certain language,
+the timespan of experience with this language can easily becalculated, like in
+formula \ref{eq:timespan}.
 
 \begin{equation}
-timespan = julianday(d2) - julianday(d1)
+timespan(language) = date(lastcommit(language)) - date(firstcommit(language))
 \label{eq:timespan}
 \end{equation}
 
@@ -228,7 +229,7 @@ of experience. This is solved by the introduction of a \textit{productivity para
 which is based off the number of commits one makes per day - as formula \ref{eq:productivity} shows.
 
 \begin{equation}
-productivity = \frac{numberOfCommits}{timespan}
+productivity(language) = \frac{numberofcommits(language)}{timespan(language)}
 \label{eq:productivity}
 \end{equation}
 
@@ -248,7 +249,7 @@ With this in mind, it makes sense to introduce another factor into
 the metric that gives credit to developers who make small commits:
 
 \begin{equation}
-averageCommitSize = \frac{sum(linesPerCommit)}{count(commits)}
+averageCommitSize(language) = \frac{\sum_{c \in commits(language)} lines(c)}{count(commits)}
 \label {eq:avgcommitsize}
 \end{equation}
 
