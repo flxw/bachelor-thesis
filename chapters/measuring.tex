@@ -193,9 +193,9 @@ code statistics. Two assumptions that came to our minds were as follows:
        where the slow learner simply had more time.
 \end{itemize}
 
-Sadly, the only measurement we were able to make is the number of lines written.
-As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice.
-It simply cannot be determined whether the writing of a single line has taken
+Unfortunately, the only measurement we were able to make is the number of lines written.
+As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice
+and simply cannot be determined whether the writing of a single line has taken
 ten seconds or five hours. And again, the kind of language used plays a huge role.
 On the one hand, a single line of ASM does take less time to write than a single line in JavaScript
 and will have very little effect on data in main memory. On the other hand, the line
@@ -256,7 +256,8 @@ averageCommitSize(language) = \frac{\sum_{c \in commits(language)} lines(c)}{cou
 Combining all three values, the developers best suited for a position
 \textit{from the technical perspective} are the ones who
 have the \textit{greatest timespans}, the \textit{highest productivity},
-but the \textit{lowest averageCommitSize}.
+but the \textit{lowest averageCommitSize}. Our metric measures only
+programming languages, and not technologies.
 
 \subsection{Cultural fit}
 Technical competencies aside, nobody wants to work with someone who does
