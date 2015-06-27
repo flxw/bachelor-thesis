@@ -34,10 +34,6 @@
 %    * Use tables as in the examples
 %    * See classicthesis-preamble.sty for useful commands
 % **************************************************************************************************************
-% To Do:
-%		 * [high] Check this out: http://www.golatex.de/koma-script-warnung-in-verbindung-mit-listings-package-t2058.html
-%    * [medium] mathbb in section-titles/chapter-titles => disappears somehow in headlines!!!
-% **************************************************************************************************************
 \documentclass[ openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
                 footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
                 BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
@@ -78,7 +74,7 @@
 %\cleardoublepage\input{frontbackmatter/publication}
 \input{frontbackmatter/acknowledgments}
 \pagestyle{scrheadings}
-%\input{frontbackmatter/contents}
+\input{frontbackmatter/contents}
 %********************************************************************
 % Mainmatter
 %*******************************************************
@@ -95,7 +91,7 @@
 \appendix
 %\cleardoublepage
 \part{Appendix}
-%\input{chapters/chapter0A}
+\input{chapters/chapter0A}
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************

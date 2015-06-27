@@ -7,16 +7,6 @@ needed to be built. It should motivate developers enough to grant it access to t
 public repositories, and convince recruiters to use it. The special means that
 the development of the application required will be described in this chapter.
 
-\section{Employee view}
-registration for ranking
-statistics
-ranked xth for some request
-
-\section{Employer view}
-enter some criteria
-receive ranking
-ability to look at profiles through this ranking
-
 \section{Architecture}
 Web applications are state-of-the art as they require little servicing
 and no complex versioning. The use-case of many users taking
@@ -37,6 +27,11 @@ while the other will keep the local copies of repositories up to date and run
 the metrics on them. We will call the first the \textit{hirebot} and the
 latter the \textit{analyzer}.
 
+\subsection{Database schema}
+The database schema of hirebot is not very complex.
+Users are central to the application and every other type of data
+is associated with one, as seen in figure \ref{fig:schema}.
+
 \subsection{Hirebot}
 The component that plays the webserver role is called \textit{hirebot}.
 It attends the usual webserver tasks like formatting templates and querying
@@ -49,20 +44,19 @@ access to their emails and their repositories. Hirebot then notifies
 the analyzer of this additional datasource. The repositories are then cloned
 and analyzed. This process is also depicted in figure \ref{fig:regprocess}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=35em]{gfx/registersequence.png}
-  \caption{The interplay of the three processes after the OAuth 2.0 dance has been completed.}
-  \label{fig:regprocess}
-\end{figure}
+%\begin{figure}[ht]
+%  \centering
+%  \includegraphics[width=35em]{gfx/registersequence.png}
+%  \caption{The interplay of the three processes after the OAuth 2.0 dance has been completed.}
+%  \label{fig:regprocess}
+%\end{figure}
 
 \subsection{Analyzer}
-%TODO rewrite because of restructuring...
 The analyzer component of the application handles two slightly different
 tasks. First, it has to schedule an initial clone of all repositories
 a user owns upon his registration. Then, it has has to keep those local
 copies up to date and add new repositories, should there be any.
-\newline
+
 
 These are certainly no impossible tasks, but \textit{nodegit}, the library
 that was used for accessing the git repository data, was
@@ -75,16 +69,69 @@ runs the analysis, saves the results into the database and terminates
 upon completion. The forks are done sequentially to avoid putting
 too much load on the system at once.
 
-\subsection{Metric algorithm}
+\subsection{Algorithm implementation}
+The metric described in section \ref{sec:technicalfit} is fully implemented
+in the analyzer component. Its implementation works on a per-repository
+basis and can be written down like this:
 
-\section{Database schema}
-The database schema of hirebot is not very complex.
-Users are central to the application and every other type of data
-is associated with one, as seen in figure \ref{fig:schema}.
+\begin{lstlisting}[frame=false]
+for c:=mostRecentlyAnalyzedCommit to lastCommit do
+  for d:= c.firstDiff to c.lastDiff do
+    var language = determineFileLanguage(d.file)
+    var lineCount = d.lineCount
+    saveExperience(language, lineCount)
+\end{lstlisting}
+
+Additionally, a special JavaScript analyzer was built into the algorithm.
+It adds McCabe and Halstead complexity metric information about single
+commits. Thus, the final implementation amounts to:
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[frame=false]
+for c:=mostRecentlyAnalyzedCommit to lastCommit do
+  for d:= c.firstDiff to c.lastDiff do
+    var language = determineFileLanguage(d.file)
+    var lineCount = d.lineCount
+    saveExperience(language, lineCount)
+
+    if language == 'JavaScript'
+      var fileContentsBeforeCommit = d.file.contents
+      var fileContentsAfterCommit  = d.parent.file.content
+
+      var mcCabeComplexityBefore = getMcCabeComplexity(fileContentsBeforeCommit)
+      var mcCabeComplexityAfter = getMcCabeComplexity(fileContentsAfterCommit)
+      var halsteadComplexityBefore = getHalsteadComplexity(fileContentsBeforeCommit)
+      var halsteadComplexityAfter = getHalsteadComplexity(fileContentsAfterCommit)
+
+      saveJavaScriptMeasures(mcCabeComplexityBefore,mcCabeComplexityAfter,halsteadComplexityBefore,halsteadComplexityAfter)
+\end{lstlisting}
+\end{minipage}
 
 \begin{figure}
   \centering
-  \includegraphics[width=20em]{gfx/schema.png}
-  \caption{The hirebot database schema}
+  \includegraphics[width=35em]{gfx/schema.png}
+  \caption{The hirebot database schema. Only attributes that are mined from the code are listed.}
   \label{fig:schema}
+\end{figure}
+
+\section{Interface}
+\subsection{Candidate view}
+A candidate can view his general personal statistics and the JavaScript statistics
+mentioned above. This provides him with insight about what job offers he might
+receive and what to improve about his coding style (see figure \ref{fig:candidateview})
+
+\begin{figure}
+  \includegraphics[width=30em]{gfx/candidateview.png}
+  \caption{The candidate view of Hirebot}
+  \label{fig:candidateview}
+\end{figure}
+
+\subsection{Employer view}
+In a small small search form, a recruiter can state his requirements concerning
+programming language knowledge and for how long this skill should be in training (see figure \ref{fig:employerview}).
+
+\begin{figure}
+  \includegraphics[width=30em]{gfx/employerview.png}
+  \caption{The employer search form of Hirebot}
+  \label{fig:employerview}
 \end{figure}

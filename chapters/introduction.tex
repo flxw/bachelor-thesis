@@ -5,7 +5,7 @@ The war for talent is on. Coined at the beginning of the new
 millenium, the term describes the increasing competition between companies
 for skilled employees\footnote{\url{https://en.wikipedia.org/wiki/The_war_for_talent} | checked June 13, 2015}.
 
-This war is still on, and it has never been more intense for technical experts\footnote{\url{http://techcrunch.com/2014/12/17/waging-a-war-for-talent/} | checked June 12, 2015}.
+It is on, and it has never been more intense for technical experts\footnote{\url{http://techcrunch.com/2014/12/17/waging-a-war-for-talent/} | checked June 12, 2015}.
 A perk that one company offers with one job is countered with another perk by
 another company, and vice versa. Startup companies are being bought,
 just for the acquirer to access much needed talent.
@@ -15,12 +15,12 @@ It even goes so far that companies bid for talent on online marketplaces, like
 Hired\footnote{\url{https://hired.com}} or StartupCV\footnote{\url{https://www.startupcvs.com/}}.
 \newline
 
-Looking at programmers, a potential fit is often put into
+Looking at programmers, a candidate is often put into
 test projects or given small programming tasks to solve.
 These should prove programming capability, and given a successful completion
 they are hired\footnote{\url{http://www.fastcolabs.com/3015662/want-to-recruit-better-developers-give-them-broken-code} | checked June 13, 2015}.
 Both for developers and recruiters, this process feels slow and tedious,
-often resulting in frustration for all. There should be ways of
+often resulting in frustration for the two. There should be ways of
 identifying such capabilities beforehand, so that such timely and financially
 costly checks need not be as intensive.
 
@@ -38,9 +38,9 @@ costly checks need not be as intensive.
 %it to job postings is very general and could be applied
 %to any kind of repository.
 In this thesis we will present a metric with which developers can be matched
-against job offers and be ranked by suitability for it.
+against job requirements and be ranked by suitability for it.
 The metric will build on top of data gathered from analyzed open source repositories.
-In order to verify it, we also present platform on which recruiters can easily
+In order to verify it, we also present a platform on which recruiters can easily
 gain access to these software engineering talents. The recruiters can specify
 what kind of position they want to find candidates for, and will receive
 suggestions from the userbase that has registered with the application.
@@ -82,7 +82,7 @@ the two authors prove that developers are conscious of the fact
 that their source code is public and thus try to deliver it with
 great care. This is relevant for us for two reasons:
 First, it proves that contribution to open source has a relevancy
-in hiring and is rewarded with recognition. And second, Marlows and Dabbishs
+in hiring and is awarded with recognition. And second, Marlows and Dabbishs
 research hints at the fact that developers are trying hard to deliver very
 good code, because they are aware of its publicity. Because we will use
 exactly this code in our measurements, it is highly relevant that it be of good quality.
@@ -100,9 +100,8 @@ code complexity and refactoring needs can be derived. It is also possible
 to make statements about developer capabilites and areas of expertise.
 Thus, given a little context about the analyzed source code, it would possible
 to say that \glqq Developer X is mainly a backend developer and the single maintainer of module Y\grqq.
-\newline
 
-Philipp's development findings are supported by that of
+Philipp's findings are supported by that of
 Aftab Iqbal and Michael Hausenblas, who have analyzed different
 source code repositories for common developers\cite{ih:2012}.
 They have done so using relatively little local code analysis and relied
@@ -115,7 +114,14 @@ popular for open source code hosting before GitHub took its place.
 Now, in 2015, sourceforge has more or less disappeared from the map of open
 source developers and does not host a lot of projects of relevance anymore.
 
-Finally, a japanese research group at the Kobe Un/iversity in Tokio, seems
+Vasilescu, Filkov and Serebrenik of TU Eindhoven have taken it further
+and integrated developer-related information across several code forges
+with crowdsourcing platforms such as StackOverflow\cite{vfs:2013}.
+Their findings allow identifying active contributors on StackOverflow
+as well as active developers on GitHub.
+\newline
+
+A japanese research group at the Kobe University in Tokio, seems
 to display great interest in software analytics\cite{mn:2011}. Shinsuke Matsumoto and Masahide Nakamura
 have built a web service that allowed the analysis of any SVN or git source code repository.
 They were specifically interested in creating a platform for other researchers to
@@ -125,20 +131,30 @@ to be found, it was written in japanese. Matsumotos and Nakamuras paper
 went into deep technical detail of the inner workings of their platform.
 This knowledge was particularly helpful in the forming of an architecture for ours.
 
-Algorithmically indentifying talent is obviously something that has been tried by many
+Matsumoto, Nakamura and Giese also hinted at several code metrics of historical
+importance. They made use of McCabes Cyclomatic Complexity metric\cite{mc:1976}
+and the Halstead complexity measures\cite{h:1977}.
+The first provides a way for measuring computational complexity, which is
+something that might hint at a clean design and a performant implementation.
+Quite similarly, the latter focuses itself on static code as well, but with the
+distinction of providing several metrics, like the presumable number of bugs and
+a code difficulty indicator, all based on four small code-related numbers.
+\newline
+
+Algorithmically indentifying talent is something that has been tried by many
 companies with recruiting at the core of their business model.
-E.g. for LinkedIn, the tools for recruiters that are fueled by this research form
-their main source of income\{\url{http://thenextweb.com/insider/2013/05/05/linkedin-talent-solution/}}.
+For LinkedIn, the tools for recruiters that are fueled by this research are
+their main source of income\footnote{\url{http://thenextweb.com/insider/2013/05/05/linkedin-talent-solution/}}.
 A startup called \textit{Work For Pie}\footnote{\url{http://www.workforpie.com/}}
 built a platform similar to ours and got acquired by the hiring platform GroupTalent.
-For this reason, it was very hard to find information on the inner workings of the
-job recommendation system, which is why there is no comparison wit their
+For this reason it was very hard to find information on the inner workings of the
+job recommendation system in production, which is why there is no comparison with their
 recommendation techniques in this thesis.
 
 \section{Project background}
 Money makes the world go round. That is why the sales department
 of any company is vital to its success. Ben Horowitz correctly
-stresses this importance: "The sales organization is the face of the company to the outside world" \cite{bh:2014}
+stresses this importance: "The sales organization is the face of the company to the outside world"\cite{bh:2014}
 
 As social media platforms like facebook, Twitter, LinkedIn and Xing
 have grown successful, they have become something that this face needs to be aware of.

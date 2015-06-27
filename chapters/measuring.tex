@@ -54,16 +54,16 @@ GitHub wants candidates to have experience
 
 Optional qualifications were always mentioned in conjunction with the
 word "bonus". Presumably, candidates who receive bonuses are more
-likely to get hired. Proficiency in a certain language is very well
-verifiable by analyzing written source code, a technique that will
-be looked at in detail in the next section.
+likely to get hired. Proficiency in a certain programming language is very well
+verifiable by analyzing written source code, a technique that we will
+be looking at in detail in the next section.
 
 \section{Determining developer skill}
 Generally speaking, mastery of something is called a \textit{skill}.
 Thus, a developer can call mastery of a technology a skill.
 Measureable is only the code that the developer produces, which
-is why this code will form the basis for analyzing the individual
-developer skillset. This has the advantage that the analysis
+is why this code will form the basis for analyzing individual
+developer skillsets. This has the advantage that the analysis
 can take historical data from the code repository into account
 and be executed without the developers presence.
 
@@ -121,7 +121,6 @@ which carry the following attributes relevant for us (also depicted in Figure \r
 \end{figure}
 
 \section{Constructing a metric}
-%TODO
 This section deals with constructing a metric for answering
 the research question from \ref{subsec:dev-skill-measurement}.
 At first, we will explore existing software sizing methods,
@@ -168,17 +167,11 @@ version control systems into account and makes no distinction between
 individual contributions.
 
 \section{A custom metric}
-The analyzed job offers ask for a minimum experience level with a certain technology.
-Common code metrics however focus on code quality, and less on individual developer
-productivity. Linecount-based metrics are seen with contempt
-by both developers and managers \footnote{citation needed!!!!}
-\newline
-
-That is why we decided to construct a new metric which focuses on delivering a
+We decided to construct a new metric which focuses on delivering a
 satisfying answer to the first research question from \ref{subsec:dev-skill-measurement}.
 Most large-scale projects make use of more than one programming language
-or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity
-needs to be part of our metric.
+or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric.
+The analyzed job offers ask for a minimum experience level with a certain technology, which is why it should consider the experience level.
 
 \subsection{A naive approach}
 The data available to us consisted strictly out of commits and
@@ -186,7 +179,7 @@ code statistics. Two assumptions that came to our minds were as follows:
 
 \begin{itemize}
  \item The more experienced a developer, the more code he has seen and written.
-       This experience maps to a timespan worth working with this technology.
+       This experience maps to a timespan worth of work with this technology.
  \item Every human being is different, and as such, developers might have different learning paces.
        To attribute these, it makes sense to have experience as an abstract measure.
        This allows the metric to rank fast learners and slow learners on the same level,
@@ -195,18 +188,18 @@ code statistics. Two assumptions that came to our minds were as follows:
 
 Unfortunately, the only measurement we were able to make is the number of lines written.
 As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice
-and simply cannot be determined whether the writing of a single line has taken
+beacause it simply cannot be determined whether the writing of a single line has taken
 ten seconds or five hours. And again, the kind of language used plays a huge role.
 On the one hand, a single line of ASM does take less time to write than a single line in JavaScript
 and will have very little effect on data in main memory. On the other hand, the line
 in ASM is much harder to write, because the whole memory structure needs to be understood.
 The answer which line is worth more in this case is very hard to answer.
-It is dependant on lots of factors - some measurable factors and some soft factors.
+It is dependant on lots of factors - some of which are measurable and some of which are soft.
 Unfortunately, there is not a lot of research available on the topic of line-based
 measurements. Many opinionated articles exist, which was evidence enough for us
-that this approach does work out well in reality. For this reason, we diverted to another approach.
+that this approach should be avoided.
 
-\subsection{Technical fit}
+\subsection{Technical fit}\label{sec:technicalfit}
 From the data that each commit sports it is possible to say when a developer
 used a programming language for the first time in a project.
 By aggregating the data over several repositories, it is possible to say when
@@ -218,10 +211,12 @@ By using the first and last dates for commits that were made with a certain lang
 the timespan of experience with this language can easily becalculated, like in
 formula \ref{eq:timespan}.
 
-\begin{equation}
-timespan(language) = date(lastcommit(language)) - date(firstcommit(language))
-\label{eq:timespan}
-\end{equation}
+\begin{align}
+\begin{split}\label{eq:timespan}
+timespan(language) ={}& date(lastcommit(language)) - \\
+                      & date(firstcommit(language))
+\end{split}
+\end{align}
 
 This simple calculation alone bears the fallacy that people who use a
 programming language rarely but every few years get attributed lots
@@ -256,7 +251,7 @@ averageCommitSize(language) = \frac{\sum_{c \in commits(language)} lines(c)}{cou
 Combining all three values, the developers best suited for a position
 \textit{from the technical perspective} are the ones who
 have the \textit{greatest timespans}, the \textit{highest productivity},
-but the \textit{lowest averageCommitSize}. Our metric measures only
+but the \textit{lowest averageCommitSize}. This metric measures only
 programming languages, and not technologies.
 
 \subsection{Cultural fit}
@@ -273,9 +268,11 @@ might be a hint of importance and social acceptance.
 \newline
 
 GitHub used to provide users with the possibility to write about themselves.
-Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/}}, which is unfortunately a
-remnant of the removal. This data will be removed in a future version,
-which was confirmed upon question (see figure \ref{fig:gapitweet}).
+Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/}}, but that is unfortunately a
+remnant of its removal. This data will be removed in a future version,
+which was confirmed upon request (see figure \ref{fig:gapitweet}).
+Some ideas to gain insight into candidate personality
+are outlined in section \ref{sec:future-work}.
 
 \begin{figure}
   \centering
@@ -284,10 +281,10 @@ which was confirmed upon question (see figure \ref{fig:gapitweet}).
   \label{fig:gapitweet}
 \end{figure}
 
-\section{Threats to validity}\label{sec:threatstovalidity}
+\section{Downsides}\label{sec:threatstovalidity}
 For the metric to deliver meaningful results, the base data
 needs to be sufficiently large and all e-mail addresses that were used for
-making commits need to be registered with the GitHub profile.\\
+making commits need to be registered with the GitHub profile.
 
 Someone who used a open-source component at work, made a small bugfix,
 and contributed it back into the project, but left his profile untouched
