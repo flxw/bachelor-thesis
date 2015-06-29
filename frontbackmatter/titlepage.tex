@@ -1,40 +1,44 @@
 %*******************************************************
 % Titlepage
 %*******************************************************
+\newenvironment{myepigraph}
+  {\par\hfill
+   \begin{tabular}{@{}r@{\hspace{13em}}}}
+  {\end{tabular}\par\medskip}
+
 \begin{titlepage}
 	% if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
 	\begin{addmargin}[-1cm]{-3cm}
     \begin{center}
-        \large
-
         \hfill
 
         \vfill
 
         \begingroup
-            \color{Maroon}\spacedallcaps{\myTitle} \\
-            \color{Black}\spacedlowsmallcaps{\mySubtitle}\\[1em]
-            \color{Maroon}\spacedallcaps{\myTitleGer}\\
-            \color{Black}\spacedlowsmallcaps{\mySubtitleGer}
-            \\[3em]
+          \color{Maroon}\spacedallcaps{\myTitle} \\
+          \color{Black}\spacedlowsmallcaps{\mySubtitle}\\[1em]
+          \color{Maroon}\spacedallcaps{\myTitleGer}\\
+          \color{Black}\spacedlowsmallcaps{\mySubtitleGer}
+          \\[3em]
         \endgroup
 
         {\color{Black}\spacedlowsmallcaps{\myName}\\
         \spacedlowsmallcaps{\myTime}}
 
+        \hfill
+
 
 
         \vfill
 
-        \includegraphics[width=6cm]{gfx/logo.jpg} \\ \medskip
-
-        %\myDegree \\
-        %\myDepartment \\
-        \myFaculty \\
+        \includegraphics[width=6cm]{gfx/logo.jpg} \\[2ex]
+        \begin{myepigraph}
+        \spacedlowsmallcaps{Supervised by}\\
         \myProf\\
-        \mySupervisor
-        %\myUni \\ \bigskip
-
+        \mySupervisorA\\
+        \mySupervisorB\\
+        \spacedlowsmallcaps{\myFaculty}
+        \end{myepigraph}
 
         \vfill
 
