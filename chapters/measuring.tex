@@ -15,7 +15,7 @@ how to measure developer skill requirements from job advertisements.
 
 \section{Job posting aspects}
 We manually analyzed 20 job offers from the Github Jobs
-site\footnote{https://jobs.github.com}, which hosts about 300 job offerings,
+site\footnote{\url{https://jobs.github.com} | checked Mai 1, 2015}, which hosts about 300 job offerings,
 each one valid for 30 days. It became clear that most
 job offers consisted out of three parts:
 
@@ -128,10 +128,10 @@ and how they relate to our intentional use.
 The exploration was to no avail, as we will construct and defend
 our own approach in the section after that.
 
-\subsection{Existing software sizing methods}
+\section{Existing software sizing methods}
 Estimating software development effort is a task that
 came up as early as 1981, when Barry W. Boehm invented the \textit{
-Constructive Cost Model} (COCOMO)\footnote{\url{http://en.wikipedia.org/wiki/COCOMO}}.
+Constructive Cost Model} (COCOMO)\footnote{\url{http://en.wikipedia.org/wiki/COCOMO} | checked June 10, 2015}.
 It is a simple measure for estimating code cost
 based on two main factors: developer count and development time.
 \newline
@@ -145,7 +145,7 @@ an epic wrong assumption of historical importance\cite{fb:1975}.
 \newline
 
 Research on other measurement methods clearly shows that measuring
-function points\footnote{\url{http://en.wikipedia.org/wiki/Weighted_Micro_Function_Points}}\footnote{\url{http://www.projectcodemeter.com/cost_estimation/index.html}}
+function points\footnote{\url{http://bit.ly/1C1yys5} | checked June 10, 2015}\footnote{\url{http://bit.ly/1CEmDLy} | checked June 10, 2015}
 is state-of-the-art for measuring software size and complexity.\cite{linkedin:functionpointstandard}
 A function point is the unit of measurement that expresses the amount of
 business functionality a system provides to a user. This is a wholistic
@@ -161,7 +161,7 @@ to paying bonuses for higher line counts\cite{am:2009}.
 \newline
 
 Measuring wholistic development effort that has gone into a project as a
-whole\footnote{\url{http://www.locmetrics.com/alternatives.html}}
+whole\footnote{\url{http://www.locmetrics.com/alternatives.html} | checked June 10, 2015}
 is not the approach we need, because it does not take historical data from
 version control systems into account and makes no distinction between
 individual contributions.
@@ -170,7 +170,7 @@ individual contributions.
 We decided to construct a new metric which focuses on delivering a
 satisfying answer to the first research question from \ref{subsec:dev-skill-measurement}.
 Most large-scale projects make use of more than one programming language
-or technology\footnote{see e.g. the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric.
+or technology\footnote{see \eg the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric.
 The analyzed job offers ask for a minimum experience level with a certain technology, which is why it should consider the experience level.
 
 \subsection{A naive approach}
@@ -268,7 +268,7 @@ might be a hint of importance and social acceptance.
 \newline
 
 GitHub used to provide users with the possibility to write about themselves.
-Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/}}, but that is unfortunately a
+Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/} | checked June 29, 2015}, but that is unfortunately a
 remnant of its removal. This data will be removed in a future version,
 which was confirmed upon request (see figure \ref{fig:gapitweet}).
 Some ideas to gain insight into candidate personality
