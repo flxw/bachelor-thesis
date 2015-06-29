@@ -15,56 +15,33 @@ It even goes so far that companies bid for talent on online marketplaces, like
 Hired\footnote{\url{https://hired.com} | checked June 19, 2015} or StartupCV\footnote{\url{https://www.startupcvs.com/} | checked June 19, 2015}.
 \newline
 
-Looking at programmers, a candidate for an opening is often put into
-test projects or given small programming tasks to solve.
-These should prove programming capability, and given a successful completion
-they are hired\footnote{\url{http://bit.ly/1LDNtvn} | checked June 13, 2015}.
-Both for developers and recruiters, this process feels slow and tedious,
-often resulting in frustration for the two. There should be ways of
-identifying such capabilities beforehand, so that such timely and financially
-costly checks need not be as intensive.
+Looking at programmers, a candidate for an opening is often put into test projects or given small programming tasks to solve. These should prove programming capability, and - given a successful completion - they are hired\footnote{\url{http://bit.ly/1LDNtvn} | checked June 13, 2015}. Both for developers and recruiters, this process feels slow and tedious, often resulting in frustration for the two. There should be ways of identifying such capabilities beforehand, and rather than conducting technical interviews or costly tests, we propose hereby a software-based method for matching technical talent on to technical requirements from job advertisements.
 
 \section{Contribution}
-% See phil giesess thesis for a very good introduction on what he has built
-% take job advertisements and find developers for them
-% goal is a system similar to N2O but for recruiters and not for salespeople
-%What has been built in this thesis and what has been achieved?
-%GitHub provides users with the possibility of
-%publicly hosting source code as well as collaborating with other users on a
-%project-scale or even an organization-scale. The source code itself as well
-%as the whole git history is publicly available and provides a solid base
-%for analysis. Because of its widespread adoption, this platform has been chosen
-%for the analysis. Of course, the principle of analyzing source code and matching
-%it to job postings is very general and could be applied
-%to any kind of repository.
-In this thesis we will present a metric with which developers can be matched
-against job requirements and be ranked by suitability for it.
-The metric will build on top of data gathered from analyzed open source repositories.
-In order to verify it, we also present a platform on which recruiters can easily
-gain access to these software engineering talents. The recruiters can specify
-what kind of position they want to find candidates for, and will receive
-suggestions from the userbase that has registered with the application.
+In this thesis we will present a metric with which developers can be matched against job requirements and be ranked by suitability for it. The metric will build on top of data gathered from analyzed open source repositories. In order to verify it, we also present a platform on which recruiters can easily gain access to these software engineering talents. The recruiters can specifyn what kind of position they want to find candidates for, and will receive suggestions from the userbase that has registered with the application.
 
-Github will be the only source of code in our case, but it has proven
-to be sufficiently large and well-frequented for our use case.
-The analysis metric has been constructed specifically for our use case,
-because to the best of our knowledge, no pre-existing method was suitable.
+Github will be the only source of code in our case, but it has proven to be sufficiently large and well-frequented for our use case. The analysis metric has been constructed specifically for our use case, because to the best of our knowledge, no pre-existing method was suitable.
 
-\section{Research Questions} \label{sec:research-questions}
+TODO - add platform image here
+
+\section{Research Questions}\label{sec:research-questions}
 To guide our research, we formulated two research questions:
 
 \subsection{How can developer skills be measured?}\label{subsec:dev-skill-measurement}
-We argue that a measurement metric that is common to most job opening
-descriptions must be found. This reduces the need for a lot of customization
-on the ad and allows analysis of pre-existing data.
+Finding commonalities between job advertisements and skill profiles
+requires some sort of reverence value. We argue that a measurement
+metric needs be found.
+In order to reduce the need for a lot of customization
+on the advertisements and allow for  analysis of pre-existing data,
+it should depend on data provided by most job opening descriptions.
 \newline
 
-All developers will be matched against the same job advertisements and thus
-they all need to be measured using the same method. The metric that
-has been derived from the advertisements will need to be measured
-on each developer - provided he or she can provide the necessary data.
-Thus the practicability of a metric depends largely on the availability
-of measureable data.
+All developers will be matched against the same job advertisements
+and thus they all need to be measured using the same method.
+The metric that has been derived from the advertisements will need to be
+measured on each developer - provided he or she can provide the
+necessary data. Thus the practicability of the metric depends largely on
+the availability of measureable data.
 
 \subsection{Can qualified candidates be found automatically?}\label{subsec:measurement-quality}
 The metric allows developers to be ranked by suitability for the position.
@@ -139,83 +116,22 @@ distinction of providing several metrics, like the presumable number of bugs and
 a code difficulty indicator, all based on four small code-related numbers.
 \newline
 
-Algorithmically indentifying talent is something that has been tried by many
-companies with recruiting at the core of their business model.
-For LinkedIn, the tools for recruiters that are fueled by this research are
-their main source of income\footnote{\url{http://tnw.co/1g20G4m} | checked June 29, 2015}.
-A startup called \textit{Work For Pie}\footnote{\url{http://www.workforpie.com/} | checked June 27, 2015}
-built a platform similar to ours and got acquired by the hiring platform GroupTalent.
-For this reason it was very hard to find information on the inner workings of the
-job recommendation system in production, which is why there is no comparison with their
-recommendation techniques in this thesis.
+Algorithmically indentifying talent is something that has been tried by  any companies with recruiting at the core of their business model. For LinkedIn, the tools for recruiters that are fueled by this research are their main source of income\footnote{\url{http://tnw.co/1g20G4m} | checked June 29, 2015}. A startup called \textit{Work For Pie}\footnote{\url{http://www.workforpie.com/} | checked June 27, 2015} built a platform similar to ours and got acquired by the hiring platform GroupTalent. For this reason it was very hard to find information on the inner workings of the job recommendation system in production, which is why there is no comparison with their recommendation techniques in this thesis.
 
 \section{Project background}
-Money makes the world go round. That is why the sales department
-of any company is vital to its success. Ben Horowitz correctly
-stresses this importance: "The sales organization is the face of the company to the outside world"\cite{bh:2014}
+The basic concept of applying demand-based filtering can be traced back to a bachelor project at the Hasso-Plattner-Institute.
 
-As social media platforms like facebook, Twitter, LinkedIn and Xing
-have grown successful, they have become something that this face needs to be aware of.
-On these platforms, millions of entries are made each day.
-500 million tweets were sent on a single day on Twitter in 2013 alone.
-All platforms combined result in a huge marketing reach,
-making social media channels a huge possibility for sales.
-Customer interactions are now possible on a very personal level,
-something that seemed nearly impossible a long time ago.
-Customer appraisal and shitstorms lie very much near each other.
+\marginpar{The bachelor project is a two-semester project at HPI, where 2-7 students work together on a large software system, often for an external partner. In the process, expertise for the bachelor thesis is gathered.}
+
+In a world where cold calls have become outdated\cite{bh:2014}, social media platforms like facebook, Twitter, LinkedIn and Xing have grown to be important places for getting in touch with customers. 500 million tweets are sent on a single day on Twitter\footnote{\url{https://about.twitter.com/company} | checked June 29, 2015} alone. All platforms combined result in a huge marketing reach. To help covering most of this reach, the bachelor project implemented a system acquiring social media data, applying filtering to it and delivering the sales-relevant pieces via a clean interface.
+
+This eliminates a huge caveat that sales representatives have been facing with social media: Trying to find the \textit{right} information inside this flood of data, which is often referred to as noise. Tiresome during freetime and even more stressful if it has to be done on the job. Finding pieces of information which might hint at an interest in a product are the ones sought after daily by sales representatives. Such a finding often leads to an attempt at contacting the author of the entry in question. The information that hints at a consumer interest is commonly referred to as Opportunity.
 \newline
 
-In all of this beauty of customer service there is a caveat:
-Trying to find the \textit{right} information inside this
-flood of data, which is often referred to as noise, is a tiresome
-process that needs to be gone through everyday and often by hand.
-Tiresome during freetime and even more stressful if it has to be done on the job.
-Finding pieces of information which might hint at an interest
-in a product are the things are the ones sought after daily by sales representatives.
-Such a finding often leads to an attempt at contacting the author of the
-entry in question. The information that hints at a consumer interest is commonly
-referred to as Opportunity.
 
-Thus, converting "Noise to Opportunity", is a very common struggle
-in sales departments. The principle is usually illustrated with a funnel,
-as shown and explained in figure \ref{fig:sales-funnel}.
+The general principle of converting noise to opportunity and reducing information load by applying demand-based-filtering can also be tailored to fit recruiting processes.
 
-\marginpar{Converting noise to opportunity is the very tiring, repetitive task
-of finding useful information in a heap of thematically
-but not practically relevant data}
+\marginpar{Converting noise to opportunity is the very tiring, repetitive task of finding useful information in a heap of thematically but not practically relevant data}
 
-\begin{figure}[bth]
-    %\includegraphics[width=90\linewidth]{gfx/sales-funnel}
-    \caption{The sales funnel for reducing noise to opportunity. Too much
-    information with a few useful bits in it goes in at the top and gets
-    reduced to promising pieces that might be converted to a sales opportunity}
-    \label{fig:sales-funnel}
-\end{figure}
-
-The bachelor project M1 at the chair of Internet Technologies and Systems
-at the Hasso-Plattner-Institute tackled this problem by applying demand-based filtering to it.
-With product descriptions of the products in mind that the department wants to sell,
-the relevant pieces of information are filtered out and delivered to each employee -
-ranked by relevancy. Based on different sales territories,
-these pieces can also be routed to different individuals.
-\newline
-
-\marginpar{The bachelor project is a two-semester project at HPI,
-where 2-7 students work together on a large software system,
-often for an external partner. In the process, expertise
-for the bachelor thesis is gathered. }
-
-The general principle of reducing information load by applying
-demand-based-filtering can also be tailored to fit recruiting processes.
-Recruiting may even be mapped roughly on to the problem of selling products.
-The \textit{products} are the job vacancies in this case, whereas the
-\textit{customers} are the potential employees that need to be found.\\
-As shown before, there is a heavy competition among recruiters for excellent
-technical candidates because of their scarcity and it seems a resonable thought
-to gain a competitive edge by pre-analyzing technical candidates
-before considering them for an interview. Also, it makes sense to apply
-some sort of metric for measuring skill, because
-"You can't manage what you can't measure"\cite{tdm:1986}.  People-based metrics
-need to be seen skeptically, but hiring is such an important decision that it
-should be manifested with numbers, because it can severely affect
-company success\cite{hk:1998}.
+Recruiting may even be mapped roughly on to the problem of selling  roducts. The \textit{products} are the job vacancies in this case, whereas the \textit{customers} are the potential employees that need to be found. As shown before, there is a heavy competition among recruiters for excellent technical candidates because of their scarcity and it seems a resonable thought to gain a competitive edge by pre-analyzing technical candidates before considering them for an interview. Also, it makes sense to apply some sort of metric for measuring skill, because
+"You can't manage what you can't measure"\cite{tdm:1986}.  People-based metrics need to be seen skeptically, but hiring is such an important decision that it should be manifested with numbers, because it can severely affect company success\cite{hk:1998}.
