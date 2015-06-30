@@ -2,79 +2,21 @@
 \chapter{Conclusion}\label{ch:conclusion}
 %************************************************
 \section{Future work}\label{sec:future-work}
-This application is a very basic prototype and is extensible in many directions.
-Let us start with application functionality that could be added quite easily.
+The Hirebot platform is a very basic prototype and extensible in many directions. Let us start with functionality that could be added quite easily.
 
-An account on GitHub is certainly very promising, but it is not the only
-place where one can publish code. There are similar services like Gitorious,
-Bitbucket or GitLab and of course self-hosted git-repositories.
-While one may have made significant contributions to these codebases,
-these will not show up in the final statistics, as outlined in
-section \ref{sec:threatstovalidity} and criticized in section \ref{sec:key-findings}.
-As such, it should at least be possible to manually add other repositories by
-hand, or connect other platforms in a process similar to that used with GitHub.
+An account on GitHub is certainly very promising, but it is not the only place where one can publish code. There are similar services like Gitorious, Bitbucket or GitLab and of course self-hosted git-repositories. If one has made significant contributions to these codebases, these will not show up in the final statistics, as outlined in section \ref{sec:threatstovalidity} and criticized in section \ref{sec:key-findings}. As such, it should at least be possible to manually add other repositories by hand, or connect other platforms in a process similar to that used with GitHub.
 
-The connection with other platforms leads to another possible improvement
-that might cancel out false recommendations, also a critic picked up during the
-interviews.
-Instead of relying on information from a single source, it would make very
-much sense to enrich it with information from other sources. There
-are numerous job profile sites like XING\footnote{\url{http://xing.de} | checked June 10, 2015}
-or LinkedIn\footnote{\url{http://linkedin.com} | checked June 10, 2015} where users have
-published their complete curriculum vitaes. This might hint at the
-possibility of the user wanting to change his job, and his suitability for
-a position. For example a user that is found to be suitable for a data engineer
-position might not want to leave his job at a technology consultancy
-firm - he is just developing in his own interest.
-Other interesting sources include Openhub\footnote{\url{http://openhub.net | checked June 10, 2015}}
-and Stackoverflow\footnote{\url{http://stackoverflow.com} | checked June 10, 2015}.
-By using the techniques for identifying developers across StackOverflow and
-GitHub\cite{vfs:2013}, it might be be possible to enrich user profiles
-automatically to better identify personal topic preferences.
-With this information at hand, building something similar to a Klout score
-is possible\footnote{\url{http://mashable.com/2011/06/29/work-for-pie} | checked June 10, 2015}.
+The connection with other platforms leads to another possible improvement that might cancel out false recommendations, also a critic picked up during the interviews. Instead of relying on a single source, it would make very much sense to pull in information from others to improve the basis for decision. There are numerous job profile sites like XING\footnote{\url{http://xing.de} | checked June 10, 2015} or LinkedIn\footnote{\url{http://linkedin.com} | checked June 10, 2015} where users have published their complete curriculum vitaes. A profile here can hint at the suitability of a candidate for a position. For example a user that is found to be suitable for a data engineer position might not want to leave his job at a technology consultancy firm - he is just developing in his own interest. Other interesting sources include Openhub\footnote{\url{http://openhub.net} | checked June 10, 2015} and Stackoverflow\footnote{\url{http://stackoverflow.com} | checked June 10, 2015}. By using the techniques for identifying developers across StackOverflow and GitHub\cite{vfs:2012}, it might be be possible to enrich user profiles automatically to better identify personal topic preferences. With this information at hand, building something similar to a Klout score is possible\footnote{\url{http://mashable.com/2011/06/29/work-for-pie} | checked June 10, 2015}.
+
+The reliable identification of candidates across several sources also rids the system of the necessity of needing registrations. Developers can easily be \textit{found} by crawling the GitHub API, thus increasing the userbase for recommendations.
+
+
+Lots of job advertisements also put emphasis on certain technologies. I.e. It does not suffice to know Javascript - specifically AngularJS (a client-side JavaScript framework) needs to be well known for at least three years. With the current state of development this kind of differentiation is not possible. No distinctions between front-end or backend code are be made, nor are specific technologies considered. This would require technology-specific context, and a complex distinction logic as the lines between frontend and backend code begin to blur. For example, Node.js backend-code can easily be run in any web browser using browserify\footnote{\url{http://browserify.org} | checked June 10, 2015}.
 \newline
 
-Lots of job advertisements also put emphasis on certain technologies.
-It does not suffice to know Javascript - specifically AngularJS (a JavaScript framework)
-needs to be well known for at least three years.
-With the current algorithm this kind of differentiation is not possible.
-No distinctions between front-end or backend code are be made,
-nor are specific technologies considered. This would require technology-specific
-context, and a complex distinction logic as the lines between frontend
-and backend code begin to blur. For example, Node.js backend-code can easily be run in any web browser using browserify\footnote{\url{http://browserify.org} | checked June 10, 2015}.
-\newline
-
-To improve the metric, it could make sense to analyze code sections
-before and after for their complexity and other quality measures.
-As proven in the master thesis of Philipp Giese \cite{pg:2014},
-it is possible to analyze the change in complexity and performance
-of code that a developer introduces with his commit.
-Now, if a developer strives to reduce complexity with his commits,
-this should be rewarded with a boost in the overall measure.
-Likewise, overcomplicating commits should punished.
-That this is possible was demonstrated in chapter \ref{ch:implementation},
-but as only data for JavaScript was generated, it was decided not to make
-it part of the ranking. Once more languages are covered, it is definitely
-a worthwile consideration.
+To improve the metric, it makes sense to analyze code sections before and after the commit for changes in complexity and other quality measures. As shown by Giese \cite{pg:2014} and in section \ref{sec:metric-implementation}, this is just another step in the analysis process. Now, if a developer strives to reduce complexity with his commits, this can be rewarded with a boost in the overall ranking. Likewise, overcomplicating commits should be punished. Once more languages than JavaScript are covered, this seems a worthwile investment of development effort: employers get into contact with highly skilled developers while students who are good at coding can move up the ranks.
 
 \section{Conclusion}
-In this thesis we have constructed a metric as an approach to measuring developer
-skill. Even though Yashamita et al. claim that software metrics alone can not
-be used to assess source code\cite{mlya:2012}, it is possible to use these metrics
-to match code authors on to job opening skill requirements by comparing provided and demanded skills.
-At the heart of research lies Hirebot, a platform where developers can sign up with their
-GitHub account. Upon registration their public repositories are cloned and
-data to construct the metric on is gathered.
-Developers can view their own statistics to get a feeling for what programming
-languages they have provided data and recruiters can easily
-enter programming language requirements and receive candidate suggestions.
-Hirebot was built specifically to verify our metric with real data.
-As demonstrated in the previous chapter, the results are acceptably good for
-the amount of data gathered.
+In this thesis we have constructed a metric as an approach to measuring developer skill. Even though Yashamita et al. claim that software metrics alone can not be used to assess source code\cite{mlya:2012}, it is possible to use these metrics to match code authors to job opening skill requirements by comparing provided and demanded skills. At the heart of research lies Hirebot, a platform where developers can sign up with their GitHub account. Upon registration their public repositories are cloned and data to construct the metric on is gathered. Developers can view their own statistics to get a feeling for what programming languages they have provided data and recruiters can easily enter programming language requirements and receive candidate suggestions. Hirebot was built specifically to verify our metric with real data. As demonstrated in the previous chapter, the results are acceptably good for the amount of data gathered, and we are confident to have found a good solution to the problem.
 
-Having demonstrated the feasability of an algorithmic matching approach
-of developers to technical job openings, it is only a question of time and effort
-until anyone can be matched on to any job opening automatically and the rankings
-take into account more and more data, perhaps even checking for a cultural or
-personality fit.
+Having demonstrated the feasability of an algorithmic matching approach of developers to technical job openings, we believe that it is only a question of time and effort until anyone can be matched on to any job opening automatically. The rankings will take into account more and more data, perhaps even checking for a cultural or personality fit.
