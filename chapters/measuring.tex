@@ -120,7 +120,7 @@ productivity(language) = \frac{numberofcommits(language)}{timespan(language)}
 \label{eq:productivity}
 \end{equation}
 
-There is a downside to this, however. It rewards people who commit large files of source code they have not written. A good example might be a commit that contains the \textit{node\_modules} library folder from a node.js project. In a single commit, this developer will have been attributed thousands of lines of JavaScript.
+There is a downside to this, however. It rewards people who commit large files of source code they have not written. A good example might be a commit that contains the \textit{node\_modules} library folder from a Node.js project. In a single commit, this developer will have been attributed thousands of lines of JavaScript.
 
 Small commits are preferred \cite{so:commitsize} over very large commits as they provide a better level of granularity for reverting\footnote{git revert} or cherry-picking\footnote{git cherry-pick}. For this reason, they have become more or less of a standard in free  open source software projects, with 50\% percent of all commits being reasonably small\cite{rsk:2014}. With this in mind, it makes sense to introduce another factor into the metric that gives credit to developers who make small commits, allowing for better teamplay:
 
