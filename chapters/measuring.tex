@@ -3,17 +3,17 @@ This chapter is going to deal with finding an answer to the question asked in se
 At first, the most frequent commonality between job openings (\ie position description, work location) is determined. Then, the amount of information that can be acquired about developers without their presence is researched. From the common subset, a way to determine developer fit for job openings is derived.
 
 \section{Job advertisement aspects}
-We manually analyzed 20 job offers from the Github Jobs site\footnote{\url{https://jobs.github.com} | checked Mai 1, 2015}, which hosts about 300 job offerings, each one valid for 30 days. It became clear that most job offers consisted out of three parts:
+We manually analyzed 20 job offers from the GitHub Jobs site\footnote{\url{https://jobs.github.com} | checked Mai 1, 2015}, which hosts about 300 job offerings, each one valid for 30 days. It became clear that most job offers consisted out of three parts:
 
 \begin{itemize}
   \item A description of the position environment
   \item A detailed description of technical skill requirements
-  \item A "wishlist" about the employee character traits
+  \item A "wish list" about the employee character traits
 \end{itemize}
 
-Most startup job openings put the emphasis on candidate personality and willingness to learn, as tasks and roles are not yet clearly defined at this stage of company life.\marginpar{Startups define their openings via mindsets and less via requirements. There is often a "can-do, can-learn" attitude.} Phrases like \textit{"An incredibly hard worker, even when it's not so fun"} are quite common and describe a required mindset. For this reason mainly advertisements from larger, established  ompanies were taken into account, because they demand more specifically defined roles.
+Most startup job openings put the emphasis on candidate personality and willingness to learn, as tasks and roles are not yet clearly defined at this stage of company life.\marginpar{Startups define their openings via mindsets and less via requirements. There is often a "can-do, can-learn" attitude.} Phrases like \textit{"An incredibly hard worker, even when it's not so fun"} are quite common and describe a required mindset. For this reason mainly advertisements from larger, established  companies were taken into account, because they demand more specifically defined roles.
 
-Inside this subset of openings, for example GitHub and Apple had very specific, measureable technical requirements:
+Inside this subset of openings, for example GitHub and Apple had very specific, measurable technical requirements:
 \newline
 
 Apple wants candidates for a data engineer position to
@@ -34,17 +34,17 @@ GitHub wants candidates to have experience with:
 Optional qualifications were always mentioned in conjunction with the word "bonus". Presumably, candidates who can supply bonus points are more likely to get hired. While proficiency in a certain programming language is very well verifiable, soft factors like character traits or personal environment preferences are not. For this reason, we are focusing ourselves on analyzing programming skills via written source code, a technique that is described in detail in the next section.
 
 \section{Determining developer skill}
-Generally speaking, mastery of something is called a \textit{skill}. Thus, a developer can call mastery of a technology a skill. Measureable is only the code that the developer produces, which is why this code will form the basis for determining individual developer skillsets. This has the advantage that the analysis can take historical data from the code repository into account and be executed without the developers presence. It is neccessary to do so because skills evolve over time, and many job advertisements specifically require a minimum time of acquaintance with a programming language.
+Generally speaking, mastery of something is called a \textit{skill}. Thus, a developer can call mastery of a technology a skill. Measurable is only the code that the developer produces, which is why this code will form the basis for determining individual developer skillsets. This has the advantage that the analysis can take historical data from the code repository into account and be executed without the developers presence. It is necessary to do so because skills evolve over time, and many job advertisements specifically require a minimum time of acquaintance with a programming language.
 
 \section{Data source}
 GitHub is a popular open source community which enjoys high popularity
-and hosts the source code repositories of a lot of projects with great influence. These include, but are of course not limited to, Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}. More importantly, technical recruiters value profiles in such communities greatly from applicants\cite{md:2013}, so there is an added incentive to this datasource. As repositories often contain the combined works of multiple team members, it is important that only individual contributions are measured.
+and hosts the source code repositories of a lot of projects with great influence. These include, but are of course not limited to, Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}. More importantly, technical recruiters value profiles in such communities greatly from applicants\cite{md:2013}, so there is an added incentive to this data source. As repositories often contain the combined works of multiple team members, it is important that only individual contributions are measured.
 
 On GitHub there is a distinction between public and private repositories. Public repositories can be read by anyone, while private repositories contain source code disclosed only to a very limited number of people. Analyzing closed source repositories is not an option, as there are lots of privacy and security concerns. That is why the analysis will be restricted to open source repositories that the respective candidate has contributed to. Proposals on how to include mined data from these repositories can be found in chapter \ref{sec:future-work}.
 \newline
 
 
-Judging from the results of a small survey at the german Hasso-Plattner-Institute, chances are that most passionate software developers own a GitHub account.\footnote{The survey reached 608 people.}
+Judging from the results of a small survey at the German Hasso-Plattner-Institute, chances are that most passionate software developers own a GitHub account.\footnote{The survey reached 608 people.}
 \marginpar{96 out of 97 participants at HPI use GitHub.
 608 HPI students and alumni were asked in this survey.}
 As such, GitHub provides a very good basis for data analysis. It offers two types of data that are of importance to us: users and repositories.
@@ -83,7 +83,7 @@ It is a simple measure for estimating code cost based on two main factors: devel
 It assumes that more developers will take \textit{less} time to produce the same amount of code, measured in SLOCS\footnote{SLOCS is an abbreviation for \textit{source lines of code}}. This leads to the assumption that more developers produce more code. The project itself does not grow, and thus more developers will finish it faster - a dangerously wrong assumption of historical importance\cite{fb:1975}.
 \newline
 
-Research on other measurement methods clearly shows that measuring function points\footnote{\url{http://bit.ly/1C1yys5} | checked June 10, 2015}\footnote{\url{http://bit.ly/1CEmDLy} | checked June 10, 2015} is state-of-the-art for measuring software size and complexity\cite{linkedin:functionpointstandard}. A function point is the unit of measurement that expresses the amount of business functionality a system provides to a user. This is a wholistic measure, meaning that it analyzes the code as-is and does not take into account individual contributions.
+Research on other measurement methods clearly shows that measuring function points\footnote{\url{http://bit.ly/1C1yys5} | checked June 10, 2015}\footnote{\url{http://bit.ly/1CEmDLy} | checked June 10, 2015} is state-of-the-art for measuring software size and complexity\cite{linkedin:functionpointstandard}. A function point is the unit of measurement that expresses the amount of business functionality a system provides to a user. This is a holistic measure, meaning that it analyzes the code as-is and does not take into account individual contributions.
 
 Clearly, measuring function points brings comparably better results than counting SLOCs as it is programming language-agnostic and measures the value of user-relevant program features, which makes it more business-relevant. As a side note, counting SLOCs remains present in many companies as processes have been formed around it. Some companies even resorted to paying bonuses for higher line counts\cite{am:2009}.
 \newline
