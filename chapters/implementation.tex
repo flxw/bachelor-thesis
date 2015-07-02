@@ -79,7 +79,7 @@ for c:=mostRecentlyAnalyzedCommit to lastCommit do
 \end{lstlisting}
 \end{minipage}
 
-Even though the extra JavaScript metrics are not considered in the final evaluation of our metric, they serve as an example of how to gain insights into per-commit changes of overall complexity and size.
+Even though the extra JavaScript metrics are not considered in the final evaluation of our metric, they serve as an example of how to gain insights into per-commit changes of overall complexity and size, like it has been done extensibly in Gieses' work\cite{pg:2014}.
 
 \begin{figure}
   \centering
@@ -93,7 +93,13 @@ The metric is aggregated from the raw commit analysis data using an SQL view cal
 
 \begin{lstlisting}[language=SQL, frame=false]
 CREATE VIEW IF NOT EXISTS calculatedmetric AS
-  SELECT userid, language, MIN(date) AS firstcommitdate, MAX(date) AS lastcommitdate, SUM(lines) AS linecount, COUNT(commitid) AS commitcount, julianday(MAX(date)) - julianday(MIN(date)) AS timespan, SUM(lines)/COUNT(commitid) AS averagecommitsize, (julianday(MAX(date)) - julianday(MIN(date)))/COUNT(commitid) AS productivity
+  SELECT userid, language, MIN(date) AS firstcommitdate,
+    MAX(date) AS lastcommitdate, SUM(lines) AS linecount,
+    COUNT(commitid) AS commitcount,
+    julianday(MAX(date))-julianday(MIN(date)) AS timespan,
+    SUM(lines)/COUNT(commitid) AS averagecommitsize,
+    (julianday(MAX(date)) - julianday(MIN(date)))/COUNT(commitid)
+      AS productivity
   FROM statistics GROUP BY userid, language
   HAVING MIN(date) <> MAX(date)
   ORDER BY userid, timespan DESC, productivity ASC
@@ -104,12 +110,12 @@ Thus, four queries need to be built and executed:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=SQL, frame=false]
-SELECT id,profilename,name,profileurl,avatarurl,location,hireable,followers,following FROM users u
+SELECT id, profilename, name, profileurl, avatarurl, location, hireable, followers, following FROM users u
   WHERE 'Java' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
     AND 'C++' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
     AND 'JavaScript' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
 
-SELECT id,profilename,name,profileurl,avatarurl,location,hireable,followers,following FROM users u
+SELECT id, profilename, name, profileurl, avatarurl, location, hireable, followers, following FROM users u
   WHERE 'Java' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
     AND 'C++' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
     AND NOT 'JavaScript' IN (SELECT language FROM calculatedmetric WHERE userid = u.id AND timespan >= 360*1.5)
@@ -117,7 +123,7 @@ SELECT id,profilename,name,profileurl,avatarurl,location,hireable,followers,foll
 \end{lstlisting}
 \end{minipage}
 
-We are aware of the fact that this does not scale well. The queries would perform a lot faster if views were materialized, but SQLITE3 does not offer this commodity. As such response times are a little higher than they should be.
+We are aware of the fact that the number of queries increases with every added language requirement. This approach does not scale well, but produces the required results. The queries would perform a lot faster if views were materialized, but SQLITE3 does not offer this commodity. As such response times are a little higher than they should be, but still lie in a tolerable 2-second window.
 
 \section{Interface}
 \subsection{Candidate view}

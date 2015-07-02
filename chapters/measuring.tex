@@ -1,6 +1,6 @@
 \chapter{Taking measurements}
 This chapter is going to deal with finding an answer to the question asked in section \ref{subsec:dev-skill-measurement}: how to measure developer skill requirements from job advertisements.
-At first, the most frequent commonality between job openings (\ie position description, work location) is determined. Then, the amount of information that can be acquired about developers without their presence is researched. From the common subset, a way to determine developer fit for job openings is derived.
+At first, the most frequent commonality between job openings (i.e.  position description, work location) is determined. Then, the amount of information that can be acquired about developers without their presence is researched. From the common subset, a way to determine developer fit for job openings is derived.
 
 \section{Job advertisement aspects}
 We manually analyzed 20 job offers from the GitHub Jobs site\footnote{\url{https://jobs.github.com} | checked Mai 1, 2015}, which hosts about 300 job offerings, each one valid for 30 days. It became clear that most job offers consisted out of three parts:
@@ -11,7 +11,7 @@ We manually analyzed 20 job offers from the GitHub Jobs site\footnote{\url{https
   \item A "wish list" about the employee character traits
 \end{itemize}
 
-Most startup job openings put the emphasis on candidate personality and willingness to learn, as tasks and roles are not yet clearly defined at this stage of company life.\marginpar{Startups define their openings via mindsets and less via requirements. There is often a "can-do, can-learn" attitude.} Phrases like \textit{"An incredibly hard worker, even when it's not so fun"} are quite common and describe a required mindset. For this reason mainly advertisements from larger, established  companies were taken into account, because they demand more specifically defined roles.
+Most startup job openings put the emphasis on candidate personality and willingness to learn, as tasks and roles are not yet clearly defined at this stage of company life.\marginpar{Startups define their openings via mindsets and less via requirements. There is often a "can-do, can-learn" attitude.} Phrases like \textit{"An incredibly hard worker, even when it's not so fun"} are quite common and describe a required mindset. For this reason mainly advertisements from larger, established  companies were taken into account, because they have more specifically defined roles.
 
 Inside this subset of openings, for example GitHub and Apple had very specific, measurable technical requirements:
 \newline
@@ -40,7 +40,7 @@ Generally speaking, mastery of something is called a \textit{skill}. Thus, a dev
 GitHub is a popular open source community which enjoys high popularity
 and hosts the source code repositories of a lot of projects with great influence. These include, but are of course not limited to, Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}. More importantly, technical recruiters value profiles in such communities greatly from applicants\cite{md:2013}, so there is an added incentive to this data source. As repositories often contain the combined works of multiple team members, it is important that only individual contributions are measured.
 
-On GitHub there is a distinction between public and private repositories. Public repositories can be read by anyone, while private repositories contain source code disclosed only to a very limited number of people. Analyzing closed source repositories is not an option, as there are lots of privacy and security concerns. That is why the analysis will be restricted to open source repositories that the respective candidate has contributed to. Proposals on how to include mined data from these repositories can be found in chapter \ref{sec:future-work}.
+On GitHub there is a distinction between public and private repositories. Public repositories can be read by anyone, while private repositories contain source code disclosed only to a very limited number of people. Analyzing closed source repositories is not an option, as there are lots of privacy and security concerns. That is why the analysis will be restricted to open source repositories to which the respective candidate has contributed. Proposals on how to include mined data from these repositories can be found in chapter \ref{sec:future-work}.
 \newline
 
 
@@ -75,6 +75,9 @@ A user provides the following relevant information:
     \label{fig:commit}
 \end{figure}
 
+In fact, the GitHub API does expose more information about users than listed here. However, we wanted
+to avoid edge cases and thus stuck with the attributes that were guaranteed to exist.
+
 \section{Existing software sizing methods}
 Estimating software development effort came up as early as 1981, when Barry W. Boehm invented the \textit{Constructive Cost Model} (COCOMO)\footnote{\url{http://en.wikipedia.org/wiki/COCOMO} | checked June 10, 2015}.
 It is a simple measure for estimating code cost based on two main factors: developer count and development time.
@@ -91,7 +94,7 @@ Clearly, measuring function points brings comparably better results than countin
 Measuring wholistic development effort that has gone into a project as a whole\footnote{\url{http://www.locmetrics.com/alternatives.html} | checked June 10, 2015} is not the approach we need, because it does not take historical data from version control systems into account and makes no distinction between individual contributions.
 
 \section{A custom metric}
-This section deals with constructing a metric for answering the research question from \ref{subsec:dev-skill-measurement}. We decided to construct a new metric for this. Most large-scale projects make use of more than one programming language or technology\footnote{see \eg the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric. The analyzed job offers ask for a minimum experience level with a certain technology, which is why it should consider the experience level as well.
+We decided to construct a new metric for answering the question from \ref{subsec:dev-skill-measurement}. Most large-scale projects make use of more than one programming language or technology\footnote{see \eg the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric. The analyzed job offers ask for a minimum experience level with a certain technology, which is why it should consider the experience level as well.
 
 \subsection{A naive approach}
 The data available to us consisted strictly out of commits and code statistics. Two assumptions were as follows:
@@ -101,7 +104,7 @@ The data available to us consisted strictly out of commits and code statistics. 
  \item Every human being is different, and as such, developers might have different learning paces. To attribute these, it makes sense to have experience as an abstract measure. This allows the metric to rank fast learners and slow learners on the same level, where the slow learner simply had more time.
 \end{itemize}
 
-Unfortunately, the only measurement we were able to make is the number of lines written. As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice beacause it simply cannot be determined whether the writing of a single line has taken ten seconds or five hours. And again, the kind of language used plays a huge role. On the one hand, a single line of ASM does take less time to write than a single line in JavaScript and will have very little effect on data in main memory. On the other hand, the line in ASM is much harder to write, because the whole memory structure needs to be understood. The answer which line is worth more in this case is very hard to answer. It is dependant on lots of factors - some of which are measurable and some of which are soft. Unfortunately, there is not a lot of research available on the topic of line-based measurements. Many opinionated articles exist\footnote{\url{http://bit.ly/1BRku4a} | checked June 29, 2015}\footnote{\url{http://bit.ly/1BRkAso} | checked June 29, 2015}\footnote{\url{http://bit.ly/1GVzugg} | checked June 29, 2015}, which was evidence enough for us that this approach should be avoided.
+Unfortunately, the only measurement we were able to make is the number of lines written. As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice beacause it simply cannot be determined whether the writing of a single line has taken ten seconds or five hours. And again, the kind of language used plays a huge role. On the one hand, a single line of ASM does take less time to write than a single line in JavaScript and will have very little effect on data in main memory. On the other hand, the line in ASM is much harder to write, because the whole memory structure needs to be understood. The answer which line is worth more in this case is very hard to answer. It is dependant on lots of factors - some of which are measurable and some of which are not. Unfortunately, there is not a lot of research available on the topic of line-based measurements. Many opinionated articles exist\cite{mlya:2012}\footnote{\url{http://bit.ly/1BRku4a} | checked June 29, 2015}\footnote{\url{http://bit.ly/1BRkAso} | checked June 29, 2015}\footnote{\url{http://bit.ly/1GVzugg} | checked June 29, 2015}, which was evidence enough for us that this approach should be avoided.
 
 \subsection{Technical fit}\label{sec:technicalfit}
 From the data that each commit sports it is possible to say when a developer used a programming language for the first time in a project. By aggregating the data over several repositories, it is possible to say when he has used it for the first time in general on GitHub. This resolution of experience is based on timestamps and not on SLOC, which has the disadvantage of being not accessible for fast learners but relieves us of the neccessity to define a mapping of SLOC to a timespan. By using the first and last dates for commits that were made with a certain language, the timespan of experience with this language can easily be calculated, like in formula \ref{eq:timespan}.
@@ -138,7 +141,7 @@ Technical competencies aside, nobody wants to work with someone who does not "fi
 A small indicator about the poularity of someone might be the way his profile is valued. On GitHub, users can follow each other and be notified of the actions of their followings. The value of these counters might be a hint of importance and social acceptance.
 \newline
 
-GitHub used to provide users with the possibility to write about themselves. Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/} | checked June 29, 2015}, but that is unfortunately a remnant of its removal. This data will be removed in a future version, which was confirmed upon request (see figure \ref{fig:gapitweet}). Some ideas to gain insight into candidate personality are outlined in section \ref{sec:future-work}.
+GitHub used to provide users with the possibility to write about themselves. Their API still provides a way to read this short biography\footnote{\url{https://developer.github.com/v3/users/} | checked June 29, 2015}, but that is unfortunately a remnant of its removal. This data will be removed in a future version, which was confirmed upon request (see figure \ref{fig:gapitweet}). Other possibilities to gain insight into candidate personality are more elaborate and thus outlined in section \ref{sec:future-work}.
 
 \begin{figure}
   \centering
