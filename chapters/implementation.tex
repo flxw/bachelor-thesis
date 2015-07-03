@@ -1,7 +1,7 @@
 %************************************************
 \chapter{Implementation}\label{ch:implementation}
 %************************************************
-In order to validate the metric, an application that appealed both to developers as well as employers needed to be built. It should motivate developers enough to grant it access to their public repositories, and convince recruiters to use it. The special means that the development of the application required will be described in this chapter.
+In order to verify the metric, an application that appealed both to developers as well as employers needed to be built. It should motivate developers enough to grant it access to their public repositories, and convince recruiters to use it. The special means that the development of the application required will be described in this chapter.
 
 \section{Architecture}
 Web applications are state-of-the art as they require little servicing and no complex versioning. Our use case of many users taking advantage of a common dataset is perfect for this architecture. We decided to implement the serverside logic in Node.js, which is a JavaScript runtime. The client-side runs in the browser and makes use of standard web technologies like CSS3, HTML5 and JavaScript. The analysis results are saved in a SQLITE3 database.
@@ -140,9 +140,3 @@ receive and what to improve about his coding style (see figure \ref{fig:candidat
 \subsection{Employer view}
 In a small small search form, a recruiter can state his requirements concerning
 programming language knowledge and for how long this skill should be in training (see figure \ref{fig:employerview}).
-
-\begin{figure}
-  \includegraphics[width=30em]{gfx/employerview.png}
-  \caption{The employer search form of Hirebot}
-  \label{fig:employerview}
-\end{figure}

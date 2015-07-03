@@ -1,28 +1,23 @@
 %************************************************
 \chapter{Introduction}\label{ch:introduction}
 %************************************************
-The war for talent is on. Coined at the beginning of the new
-millennium, the term describes the increasing competition between companies
-for skilled employees\footnote{\url{https://en.wikipedia.org/wiki/The_war_for_talent} | checked June 13, 2015}.
+The war for talent is on. Coined at the beginning of the new millennium, the term describes the increasing competition between companies for skilled employees\footnote{\url{https://en.wikipedia.org/wiki/The_war_for_talent} | checked June 13, 2015}.
 
-It is on, and it has never been more intense for technical experts\footnote{\url{http://tcrn.ch/1SXBKJl} | checked June 12, 2015}.
-A perk that one company offers with one job is countered with another perk by
-another company, and vice versa. Start-up companies are being bought,
-just for the acquirer to access much needed talent.
-These so called "aquihires" often lead to an integration of the team into
-the company and a cancellation of their old product\footnote{\url{http://bit.ly/1FuPbM7} | checked June 13, 2015}\footnote{\url{https://en.wikipedia.org/wiki/Acqui-hiring} | checked June 13, 2015}.
-It even goes so far that companies bid for talent on online marketplaces, like
-Hired\footnote{\url{https://hired.com} | checked June 19, 2015} or StartupCV\footnote{\url{https://www.startupcvs.com/} | checked June 19, 2015}.
+It is on, and it has never been more intense for technical experts\footnote{\url{http://tcrn.ch/1SXBKJl} | checked June 12, 2015}. A perk that one company offers with one job is countered with another perk by another company, and vice versa. Start-up companies are being bought, just for the acquirer to access much needed talent. These so called "aquihires" often lead to an integration of the team into the company and a cancellation of their old product\footnote{\url{http://bit.ly/1FuPbM7} | checked June 13, 2015}\footnote{\url{https://en.wikipedia.org/wiki/Acqui-hiring} | checked June 13, 2015}. It even goes so far that companies bid for talent on online marketplaces, like Hired\footnote{\url{https://hired.com} | checked June 19, 2015} or StartupCV\footnote{\url{https://www.startupcvs.com/} | checked June 19, 2015}.
 \newline
 
 Looking at programmers, a candidate for an opening is often put into test projects or given small programming tasks to solve. These should prove programming capability, and - given a successful completion - they are hired\footnote{\url{http://bit.ly/1LDNtvn} | checked June 13, 2015}. Both for developers and recruiters, this process feels slow and tedious, often resulting in frustration for the two. There should be ways of identifying such capabilities beforehand, and rather than conducting technical interviews or costly tests, we propose hereby a software-based method for matching technical talent on to technical requirements from job advertisements.
 
 \section{Contribution}
-In this thesis we will present a metric with which developers can be matched against job requirements and be ranked by suitability for it. The metric will build on top of data gathered from analyzed open source repositories. In order to verify it, we also present a platform on which recruiters can easily gain access to these software engineering talents. The recruiters can specify what kind of position they want to find candidates for, and will receive suggestions from the user base that has registered with the application.
+In this thesis we will present a metric with which developers can be matched against job requirements and be ranked by suitability for it. The metric will build on top of data gathered from analyzed open source repositories. In order to verify it, we also present a platform on which recruiters can easily gain access to these software engineering talents. The recruiters can specify what kind of position they want to find candidates for, and will receive suggestions from the user base that has registered with the application (see figure \ref{fig:employerview}).
 
 GitHub will be the only source of code in our case, but it has proven to be sufficiently large and well-frequented for our use case. The analysis metric has been constructed specifically for our use case, because to the best of our knowledge, no pre-existing method was suitable.
 
-TODO - add platform image here
+\begin{figure}
+  \includegraphics[width=30em]{gfx/employerview.png}
+  \caption{The employer search form of Hirebot}
+  \label{fig:employerview}
+\end{figure}
 
 \section{Research Questions}\label{sec:research-questions}
 To guide our research, we formulated two research questions:
