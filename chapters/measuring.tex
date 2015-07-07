@@ -40,7 +40,7 @@ Generally speaking, mastery of something is called a \textit{skill}. Thus, a dev
 GitHub is a popular open source community which enjoys high popularity
 and hosts the source code repositories of a lot of projects with great influence. These include, but are of course not limited to, Linux, git, docker, elasticsearch, flask and mongo\cite{rpfd:2014}. More importantly, technical recruiters value profiles in such communities greatly from applicants\cite{md:2013}, so there is an added incentive to this data source. As repositories often contain the combined works of multiple team members, it is important that only individual contributions are measured.
 
-On GitHub there is a distinction between public and private repositories. Public repositories can be read by anyone, while private repositories contain source code disclosed only to a very limited number of people. Analyzing closed source repositories is not an option, as there are lots of privacy and security concerns. That is why the analysis will be restricted to open source repositories to which the respective candidate has contributed. Proposals on how to include mined data from these repositories can be found in chapter \ref{sec:future-work}.
+On GitHub there is a distinction between public and private repositories. Public repositories can be read by anyone, while private repositories contain source code disclosed only to a very limited number of people. Analyzing closed source repositories is not an option, as there are lots of privacy and security concerns and a local copy will be required for the analysis. That is why the analysis will be restricted to open source repositories to which the respective candidate has contributed. Proposals on how to include mined data from these repositories can be found in chapter \ref{sec:future-work}.
 \newline
 
 
@@ -86,7 +86,9 @@ It is a simple measure for estimating code cost based on two main factors: devel
 It assumes that more developers will take \textit{less} time to produce the same amount of code, measured in SLOCS\footnote{SLOCS is an abbreviation for \textit{source lines of code}}. This leads to the assumption that more developers produce more code. The project itself does not grow, and thus more developers will finish it faster - a dangerously wrong assumption of historical importance\cite{fb:1975}.
 \newline
 
-Research on other measurement methods clearly shows that measuring function points\footnote{\url{http://bit.ly/1C1yys5} | checked June 10, 2015}\footnote{\url{http://bit.ly/1CEmDLy} | checked June 10, 2015} is state-of-the-art for measuring software size and complexity\cite{linkedin:functionpointstandard}. A function point is the unit of measurement that expresses the amount of business functionality a system provides to a user. This is a holistic measure, meaning that it analyzes the code as-is and does not take into account individual contributions.
+Research on other measurement methods clearly shows that measuring function points\footnote{\url{http://bit.ly/1C1yys5} | checked June 10, 2015}\footnote{\url{http://bit.ly/1CEmDLy} | checked June 10, 2015} is state-of-the-art for measuring software size and complexity\cite{linkedin:functionpointstandard}.
+\marginpar{A function point measures the amount of business functionality for the end user.}
+A function point is the unit of measurement that expresses the amount of business functionality a system provides to a user. This is a holistic measure, meaning that it analyzes the code as-is and does not take into account individual contributions.
 
 Clearly, measuring function points brings comparably better results than counting SLOCs as it is programming language-agnostic and measures the value of user-relevant program features, which makes it more business-relevant. As a side note, counting SLOCs remains present in many companies as processes have been formed around it. Some companies even resorted to paying bonuses for higher line counts\cite{am:2009}.
 \newline
@@ -94,7 +96,7 @@ Clearly, measuring function points brings comparably better results than countin
 Measuring wholistic development effort that has gone into a project as a whole\footnote{\url{http://www.locmetrics.com/alternatives.html} | checked June 10, 2015} is not the approach we need, because it does not take historical data from version control systems into account and makes no distinction between individual contributions.
 
 \section{A custom metric}
-We decided to construct a new metric for answering the question from \ref{subsec:dev-skill-measurement}. Most large-scale projects make use of more than one programming language or technology\footnote{see \eg the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric. The analyzed job offers ask for a minimum experience level with a certain technology, which is why it should consider the experience level as well.
+We decided to construct a new metric for answering the question from \ref{subsec:dev-skill-measurement}. Most large-scale projects make use of more than one programming language or technology\footnote{see \eg the \href{http://projects.apache.org/indexes/language.html}{Apache Software Foundation Programming Language Index}}, which is why language-sensitivity needs to be part of our metric. The analyzed job offers ask for a minimum experience level with a certain technology, which is why the experience level should be taken into account  as well.
 
 \subsection{A naive approach}
 The data available to us consisted strictly out of commits and code statistics. Two assumptions were as follows:
@@ -135,7 +137,9 @@ averageCommitSize(language) = \frac{\sum_{c \in commits(language)} lines(c)}{cou
 Ranking by the three values, the developers best suited for a position \textit{from the technical perspective} are the ones who have the \textit{greatest timespans}, the \textit{highest productivity}, but the \textit{lowest averageCommitSize}. This metric tries only to capture experience with programming languages, and not experience with technologies.
 
 \subsection{Cultural fit}
-Technical competencies aside, nobody wants to work with someone who does not "fit in". A technical fit does not guarantee such a cultural fit. GitHub provides precious little data for gaining insight into the personality of a user.
+Technical competencies aside, nobody wants to work with someone who does not "fit in".
+\marginpar{Cultural fit is important for new hire. Fitting into the community is just as important as fitting into the technical requirements.}
+A technical fit does not guarantee such a cultural fit. GitHub provides precious little data for gaining insight into the personality of a user.
 \newline
 
 A small indicator about the poularity of someone might be the way his profile is valued. On GitHub, users can follow each other and be notified of the actions of their followings. The value of these counters might be a hint of importance and social acceptance.

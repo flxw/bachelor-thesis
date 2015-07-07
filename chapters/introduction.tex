@@ -24,7 +24,7 @@ To guide our research, we formulated two research questions:
 
 \subsection{How can developer skills be measured?}\label{subsec:dev-skill-measurement}
 Finding commonalities between job advertisements and skill profiles
-requires some sort of reverence value. We argue that a measurement
+requires some sort of reference value. We argue that a measurement
 metric needs be found.
 In order to reduce the need for a lot of customization
 on the advertisements and allow for  analysis of pre-existing data,
@@ -34,86 +34,35 @@ it should depend on data provided by most job opening descriptions.
 All developers will be matched against the same job advertisements
 and thus they all need to be measured using the same method.
 The metric that has been derived from the advertisements will need to be
-measured on each developer - provided he or she can provide the
-necessary data. Thus the practicability of the metric depends largely on
+measured on each developer. Thus the practicability of the metric depends largely on
 the availability of measurable data.
 
 \subsection{Can qualified candidates be found automatically?}\label{subsec:measurement-quality}
-The metric allows developers to be ranked by suitability for the position.
-The qualities of this ranking are ultimately determined by whether
-or not the right candidates land at the top of it. This needs to be
-verified with real world job candidates and the job opening descriptions
-that they applied for
+The metric allows developers to be ranked by suitability for the position. The qualities of this ranking are ultimately determined by whether or not the right candidates land at the top of it. This needs to be verified with real world job candidates and the job opening descriptions that they applied for.
 
 \section{Related Work}
-Marlow et al.\cite{md:2013} have conducted an extensive study with about
-200 participants, and found out that employers value
-open source coder profiles greatly (page 4). The authors prove that developers are conscious of the fact
-that their source code is public and thus try to deliver it with
-great care. This is relevant for us for two reasons:
-First, it proves that contribution to open source has a relevancy
-in hiring and is awarded with recognition. And second, the research of Marlow
-research hints at the fact that developers are trying hard to deliver very
-good code, because they are aware of its publicity. Because we will use
-exactly this code in our measurements, it is highly relevant that it be as good as its author can possibly write it.
-Altogether their research has proven that both public source code repositories
-are relevant for making recruitment decisions and that open source developers
-are aware of this fact and try to deliver their best.
+
+Marlow et al.\cite{md:2013} have conducted an extensive study with about 200 participants, and found out that employers value open source coder profiles greatly.
+\marginpar{Marlow et al. have shown that recruiters value open source coder profiles.}
+The authors prove that developers are conscious of the fact that their source code is public and thus try to deliver it with great care. This is relevant for us for two reasons: First, it proves that contribution to open source has a relevancy in hiring and is awarded with recognition. And second, the research of Marlow research hints at the fact that developers are trying hard to deliver very good code, because they are aware of its publicity. Because we will use exactly this code in our measurements, it is highly relevant that it be as good as its author can possibly write it. Altogether their research has proven that both public source code repositories are relevant for making recruitment decisions and that open source developers are aware of this fact and try to deliver their best.
 \newline
 
-The suitability of source code analysis for the identification of personal
-skillsets has been demonstrated in the master thesis of Philipp Giese\cite{pg:2014}.
-He built a framework called \textit{Analyzr}\footnote{\url{https://github.com/frontendphil/analyzr}}
-that analyzes the complete history from a git or SVN source code repository.
-Based on the code, different metrics are calculated, from which statements about
-code complexity and refactoring needs can be derived. It is also possible
-to make statements about developer capabilities and areas of expertise.
-Thus, given a little context about the analyzed source code, it would possible
-to say that \glqq Developer X is mainly a backend developer and the single maintainer of module Y\grqq.
+The suitability of source code analysis for the identification of personal skillsets has been demonstrated in the master thesis of Giese\cite{pg:2014}. He built a framework called \textit{Analyzr}\footnote{\url{https://github.com/frontendphil/analyzr}} that analyzes the complete history from a git or SVN source code repository. Based on the code, different metrics are calculated, from which statements about code complexity and refactoring needs can be derived. It is also possible to make statements about developer capabilities and areas of expertise. Thus, given a little context about the analyzed source code, it would possible to say that \glqq Developer X is mainly a backend developer and the single maintainer of module Y\grqq.
 
-Philipp's findings are supported by that of
-Aftab Iqbal and Michael Hausenblas, who have analyzed different
-source code repositories for common developers\cite{ih:2012}.
-They have done so using relatively little local code analysis and relied
-on on-the-fly analysis from retrieved RDF data. Their work
-has made it possible to find out whether different open source projects shared developers
-and contained useful methods of retrieving authors and eliminating duplicates
-caused by different e-mail addresses, for example.
-One of their primary sources of code was \textit{sourceforge}, a site that was
-popular for open source code hosting before GitHub took its place.
-Now, in 2015, sourceforge has more or less disappeared from the map of open
-source developers and does not host a lot of projects of relevance anymore.
-
-Vasilescu, Filkov and Serebrenik of TU Eindhoven have taken it further
-and integrated developer-related information across several code forges
-with crowdsourcing platforms such as StackOverflow\cite{vfs:2012}.
-Their findings allow identifying active contributors on StackOverflow
-as well as active developers on GitHub.
+Gieses' findings are supported by that of Aftab Iqbal and Michael Hausenblas, who have analyzed different source code repositories for common developers\cite{ih:2012}. They have done so using relatively little local code analysis and relied on on-the-fly analysis from retrieved RDF data. Their work has made it possible to find out whether different open source projects shared developers and contained useful methods of retrieving authors and eliminating duplicates caused by different e-mail addresses, for example. One of their primary sources of code was \textit{sourceforge}, a site that was popular for open source code hosting before GitHub took its place. Now, in 2015, sourceforge has more or less disappeared from the map of open source developers and does not host a lot of projects of relevance anymore.
 \newline
 
-A Japanese research group at the Kobe University in Tokyo, seems
-to display great interest in software analytics\cite{mn:2011}. Shinsuke Matsumoto and Masahide Nakamura
-have built a web service that allowed the analysis of any SVN or git source code repository.
-They were specifically interested in creating a platform for other researchers to
-contribute their source code metrics to. The metrics are programming-language agnostic
-and very general. Unfortunately the code was badly documented and if there was documentation
-to be found, it was written in Japanese. Matsumotos and Nakamuras paper
-went into deep technical detail of the inner workings of their platform.
-This knowledge was particularly helpful in the forming of an architecture for ours.
+Vasilescu et. al. of TU Eindhoven have taken it further and integrated developer-related information across several code forges with crowdsourcing platforms such as StackOverflow\cite{vfs:2012}.
+\marginpar{According to Vasilescu, developers are often active on multiple collaborative platforms.}
+Their findings allow identifying active contributors on StackOverflow was well as active developers on GitHub.
+\newline
 
-Matsumoto, Nakamura and Giese also hinted at several code metrics of historical
-importance. They made use of McCabes Cyclomatic Complexity metric\cite{mc:1976}
-and the Halstead complexity measures\cite{h:1977}.
-The first provides a way for measuring computational complexity, which is
-something that might hint at a clean design and a performant implementation.
-Quite similarly, the latter focuses itself on static code as well, but with the
-distinction of providing several metrics, like the presumable number of bugs and
-a code difficulty indicator, all based on four small code-related numbers.
+A Japanese research group at the Kobe University in Tokyo has displayed great interest in software analytics\cite{mn:2011}. Shinsuke Matsumoto et. al. have built a web service that allowed the analysis of any SVN or git source code repository. They were specifically interested in creating a platform for other researchers to contribute their source code metrics to. The metrics are programming-language agnostic and very general. Unfortunately the code was badly documented and if there was documentation to be found, it was written in Japanese. Matsumotos and Nakamuras paper went into deep technical detail of the inner workings of their platform. This knowledge was particularly helpful in the forming of an architecture for ours. Matsumoto, Nakamura and Giese also hinted at several code metrics of historical importance. They made use of McCabes Cyclomatic Complexity metric\cite{mc:1976} and the Halstead complexity measures\cite{h:1977}. The first provides a way for measuring computational complexity, which is something that might hint at a clean design and a performant implementation. Quite similarly, the latter focuses itself on static code as well, but with the distinction of providing several metrics, like the presumable number of bugs and a code difficulty indicator, all based on four small code-related numbers.
 \newline
 
 Algorithmically identifying talent is something that has been tried by many companies with recruiting at the heart of their business model. For LinkedIn, the tools for recruiters that are fueled by this research are their main source of income\footnote{\url{http://tnw.co/1g20G4m} | checked June 29, 2015}. A startup called \textit{Work For Pie}\footnote{\url{http://www.workforpie.com/} | checked June 27, 2015} built a platform similar to ours and got acquired by the hiring platform GroupTalent. For this reason it was very hard to find information on the inner workings of the job recommendation system in production, which is why there is no comparison with their recommendation techniques in this thesis.
 
-\section{Project background}
+\section{Topical background}
 The basic concept of applying demand-based filtering can be traced back to a bachelor project at the Hasso-Plattner-Institute.
 
 \marginpar{The bachelor project is a two-semester project at HPI, where 2-7 students work together on a large software system, often for an external partner. In the process, expertise for the bachelor thesis is gathered.}

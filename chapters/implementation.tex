@@ -91,6 +91,8 @@ Even though the extra JavaScript metrics are not considered in the final evaluat
 \subsection{Metric evaluation}
 The metric is aggregated from the raw commit analysis data using an SQL view called \verb=calculatedmetric=.
 
+\marginpar{A view allows us to use aggregated data without extra work with an additional table.}
+
 \begin{lstlisting}[language=SQL, frame=false]
 CREATE VIEW IF NOT EXISTS calculatedmetric AS
   SELECT userid, language, MIN(date) AS firstcommitdate,
