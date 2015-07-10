@@ -31,7 +31,7 @@ GitHub wants candidates to have experience with:
     \item AWS or similar computing solutions optionally
 \end{itemize}
 
-Optional qualifications are always mentioned in conjunction with the word \textit{bonus}. Presumably, candidates who can supply bonus points are more likely to get hired. While proficiency in a certain programming language is very well verifiable, soft factors like character traits or personal environment preferences are not. For this reason, analyzing programming skills via written source code is focused, a technique that is described in detail in the next section.
+Optional qualifications were often mentioned in conjunction with the word \textit{bonus}. Presumably, candidates who can supply bonus points are more likely to get hired. While proficiency in a certain programming language is very well verifiable, soft factors like character traits or personal environment preferences are not. For this reason, analyzing programming skills via written source code is focused, a technique that is described in detail in the next section.
 
 \section{Determining developer skill}
 Generally speaking, mastery of something is called a \textit{skill}. Thus, a developer can call mastery of a technology a skill. Measurable is only the code that the developer produces, which is why this code will form the basis for determining individual developer skillsets. This has the advantage that the analysis can take historical data from the code repository into account and be executed without the developers presence. It is necessary to do so because skills evolve over time, and many job advertisements specifically require a minimum time of acquaintance with a programming language.
@@ -44,7 +44,7 @@ On GitHub there is a distinction between public and private repositories. Public
 \newline
 
 
-Judging from the results of a small survey at the German Hasso-Plattner-Institute, chances are that most passionate software developers own a GitHub account.\footnote{The survey reached 608 people.}
+Judging from the results of a small survey at the German Hasso-Plattner-Institute, chances are high that many passionate software developers own a GitHub account.\footnote{The survey reached 608 people.}
 \marginpar{96 out of 97 participants at HPI use GitHub.
 608 HPI students and alumni were asked in this survey.}
 As such, GitHub provides a  good basis for data analysis. It offers two types of data that are of importance to us: users and repositories.
@@ -60,7 +60,7 @@ A user provides the following relevant information:
 \end{itemize}
 \vspace{1em}
 
-\noindent A repository contains the development history of a project, which is subdivided into steps, called \textit{commits}. Each commit contains changes made to the code. In the following, we will be dealing with commits, which carry the following attributes relevant for us (also depicted in Figure \ref{fig:commit}):
+\noindent A repository contains the development history of a project, which is subdivided into steps, called \textit{commits}. Each commit contains changes made to the code. In the following, we will be dealing with commits, which carry the following attributes relevant for us (also depicted in figure \ref{fig:commit}):
 
 \begin{itemize}
     \item A \textit{date} when the commit was made
@@ -75,7 +75,7 @@ A user provides the following relevant information:
     \label{fig:commit}
 \end{figure}
 
-In fact, the GitHub API does expose more information about users than listed here. However, edge cases should be avoided, and thus only attributes that are guaranteed to exist are used.
+In fact, the GitHub API does expose more information about users than listed here. However, edge cases should be avoided, and thus only attributes that are guaranteed to exist will be used.
 
 \section{Existing software sizing methods}
 Estimating software development effort came up as early as 1981, when Barry W. Boehm invented the \textit{Constructive Cost Model} (COCOMO)\footnote{\url{http://en.wikipedia.org/wiki/COCOMO} | checked June 10, 2015}.
@@ -101,11 +101,11 @@ We decided to construct a new metric for answering the question from \ref{subsec
 The data available to us consisted strictly out of commits and code statistics. Two assumptions were as follows:
 
 \begin{itemize}
- \item The more experienced a developer, the more code he has seen and written. This experience maps to a timespan worth of work with this technology.
- \item Every human being is different, and as such, developers might have different learning paces. To attribute these, it makes sense to have experience as an abstract measure. This allows the metric to rank fast learners and slow learners on the same level, where the slow learner simply had more time.
+ \item The more experienced a developer, the more code he has seen and written. This experience can be mapped to a timespan worth of work with this technology.
+ \item Every human being is different, and as such, developers might have different learning paces. To attribute for those, it makes sense to have experience as an abstract measure. This allows the metric to rank fast learners and slow learners on the same level, where the slow learner simply had more time.
 \end{itemize}
 
-The only measurement we are able to make is the number of lines written. As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice because it simply cannot be determined whether the writing of a single line has taken ten seconds or five hours. And again, the kind of language used plays a huge role. On the one hand, a single line of ASM does take less time to write than a single line in JavaScript and will have very little effect on data in main memory. On the other hand, the line in ASM is much harder to write, because the whole memory structure needs to be understood. The answer which line is worth more in this case is very hard in terms of experience is hard to answer. It is dependant on lots of factors - some of which are measurable and some of which are not. There is not a lot of research available on the topic of line-based measurements, but many opinionated articles exist\cite{mlya:2012}\footnote{\url{http://bit.ly/1BRku4a} | checked June 29, 2015}\footnote{\url{http://bit.ly/1BRkAso} | checked June 29, 2015}\footnote{\url{http://bit.ly/1GVzugg} | checked June 29, 2015}. This was evidence enough for us that this direction should be avoided.
+The only measurement we are able to make is the number of lines written. As outlined in the previous chapter, measuring SLOC is widely regarded as a bad practice because it simply cannot be determined whether the writing of a single line has taken ten seconds or five hours. And again, the kind of language used plays a huge role. On the one hand, a single line of ASM does take less time to write than a single line in JavaScript and will have very little effect on data in main memory. On the other hand, the line in ASM is much harder to write, because the whole memory structure needs to be understood. The answer which line is worth more in this case is very hard in terms of experience is hard to answer. It is dependant on lots of factors - some of which are measurable and some of which are not. It is evident, that mapping lines to an abstract experience measure has many implications to it. There is not a lot of research available on the topic of line-based measurements, but many opinionated articles exist\cite{mlya:2012}\footnote{\url{http://bit.ly/1BRku4a} | checked June 29, 2015}\footnote{\url{http://bit.ly/1BRkAso} | checked June 29, 2015}\footnote{\url{http://bit.ly/1GVzugg} | checked June 29, 2015}. This was evidence enough for us that this direction should be avoided.
 
 \subsection{Technical fit}\label{sec:technicalfit}
 From the data that available from each commit it is possible to say when a developer used a programming language for the first time in a project. By aggregating the data over several repositories, it is possible to say when he has used it for the first time in general on GitHub. This resolution of experience is based on timestamps and not on SLOC, which has the disadvantage of being not accessible for fast learners but relieves us of the neccessity to define a mapping of SLOC to a timespan. By using the first and last dates for commits that were made with a certain language, the timespan of experience with this language can easily be calculated, like in formula \ref{eq:timespan}.

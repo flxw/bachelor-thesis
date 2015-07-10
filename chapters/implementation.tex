@@ -100,7 +100,7 @@ The metric is aggregated from the raw commit analysis data using an SQL view cal
 %  ORDER BY userid, timespan DESC, productivity ASC
 %\end{lstlisting}
 
-Upon querying candidates who suit certain requirement levels, a little logic becomes necessary to build the query. To include candidates in the result set who can provide \textit{some} of the skills, it is necessary to construct combinations of the required programming languages. I.e. if Java, C++ and JavaScript experience levels of at least 3 years were asked for, there would be four combinations, not counting the single options. Thus, four queries need to be built and executed:
+Upon querying candidates who suit certain requirement levels, a little logic becomes necessary to build the query. To include candidates in the result set who can provide \textit{some} of the skills, it is necessary to construct combinations of the required programming languages. I.e. if Java, C++ and JavaScript experience levels of at least 3 years were asked for, there would be four combinations, not counting the single options. Thus, four queries need to be built and executed, selecting candidates with the following capabilities:
 
 \begin{itemize}
   \item Java \textit{AND} C++ \textit{AND} JavaScript
