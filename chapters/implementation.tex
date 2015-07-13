@@ -4,23 +4,23 @@
 In order to verify the metric, an application that appealed both to developers as well as employers needed to be built. It should motivate developers to grant it access to their public repositories, and convince recruiters to use it. The special means that the development of the application required will be described in this chapter.
 
 \section{Architecture}
-Web applications are state-of-the art as they require little servicing and no complex versioning. Our use case of many users taking advantage of a common dataset is perfect for this architecture. We decided to implement the serverside logic in Node.js, which is a JavaScript runtime. The client-side runs in the browser and makes use of standard web technologies like CSS3, HTML5 and JavaScript. The analysis results are saved in a SQLITE3 database.
+Web applications are state-of-the art as they require little servicing and no complex versioning. Our use case of many users taking advantage of a common dataset is perfect for this architecture. We decided to implement the server sided logic in Node.js, which is a JavaScript runtime. The client-side runs in the browser and makes use of standard web technologies like CSS3, HTML5 and JavaScript. The analysis results are saved in a SQLITE3 database.
 \newline
 
-The serverside part needs to master two tasks: serving data to clients as well as analyzing repositories from developers. These are two very different concerns. In order not to stall one of the tasks while executing the other, we decided to have two dedicated processes running alongside each other. One of these will serve the data and perform queries on the database, while the other will keep the local copies of the repositories up to date and build the metric on them. We will call the first component the \textit{hirebot} and the latter the \textit{analyzer}.
+The server side needs to master two tasks: serving data to clients as well as analyzing repositories from developers. These are two very different concerns. In order not to stall one of the tasks while executing the other, we decided to have two dedicated processes running alongside each other. One of these will serve the data and perform queries on the database, while the other will keep the local copies of the repositories up to date and build the metric on them. We will call the first component the \textit{Hirebot} and the latter the \textit{analyzer}.
 
 \subsection{Database schema}
-The database schema of hirebot is not very complex. Users are central to the application and every other type of data is associated with one, as seen in figure \ref{fig:schema}. Basic data retrieved from the GitHub API is saved as well as the values generated from the repositories.
+The database schema of Hirebot is not very complex. Users are central to the application and every other type of data is associated with one, as seen in figure \ref{fig:schema}. Basic data retrieved from the GitHub API is saved as well as the values generated from the repositories.
 
 \begin{figure}
   \centering
   \includegraphics[width=35em]{gfx/schema.png}
-  \caption{The hirebot database schema. Only attributes that are mined from the code are listed. To preserve space, attributes are grouped in curly braces if they share prefixes or suffixes}
+  \caption{The Hirebot database schema. Only attributes that are mined from the code are listed. To preserve space, attributes are grouped in curly braces if they share prefixes or suffixes}
   \label{fig:schema}
 \end{figure}
 
 \subsection{Hirebot}
-The component playing the webserver role is called \textit{hirebot}. It handles the usual webserver tasks like formatting templates and querying the database for answering HTTP requests to an endpoint.
+The component playing the webserver role is called \textit{Hirebot}. It handles the usual webserver tasks like formatting templates and querying the database for answering HTTP requests to an endpoint.
 \newline
 
 Additionally, it implements the foundation for data analysis. It allows developers to register with GitHub to grant the application access to their email addresses and their repositories. Hirebot then notifies the analyzer, which continues with cloning and analyzing the repositories. This process is also depicted in figure \ref{fig:regprocess}.
@@ -36,7 +36,7 @@ Additionally, it implements the foundation for data analysis. It allows develope
 The analyzer component of the application handles two slightly different tasks. First, it has to schedule an initial clone of all repositories a user owns upon his registration. Then, it has to keep those local copies up to date and add new repositories, both in a recurring fashion.
 
 
-\textit{Nodegit}, the library that was used for accessing the git repository data, was leaking memory strongly causing resource problems. To counter this, a sub-process structure was implemented. The analyzer itself only executes management logic, schedules the analysis, and communicates with the hirebot process. For executing the analysis, it forks an \textit{analyzer-worker} for each single repository. The worker clones or updates that repository, runs the analysis, saves the results into the database and terminates upon completion. The forks are done sequentially to avoid putting too much load on the system at once.
+\textit{Nodegit}, the library that was used for accessing the git repository data, was leaking memory strongly causing resource problems. To counter this, a sub-process structure was implemented. The analyzer itself only executes management logic, schedules the analysis, and communicates with the Hirebot process. For executing the analysis, it forks an \textit{analyzer-worker} for each single repository. The worker clones or updates that repository, runs the analysis, saves the results into the database and terminates upon completion. The forks are done sequentially to avoid putting too much load on the system at once.
 
 \subsection{Metric implementation}\label{sec:metric-implementation}
 The metric described in section \ref{sec:technicalfit} is fully implemented in the analyzer-worker component. Its implementation works on a repository basis and can be illustrated with the following pseudo-code down like this:\\[.25em]
@@ -79,12 +79,12 @@ Additionally, a special JavaScript analyzer was built into the algorithm. It add
 \end{minipage}
 \vspace{0.75em}
 
-Even though the extra JavaScript metrics above are not considered in the final evaluation of our metric, they serve as an example of how to gain insights into per-commit changes of overall complexity and size, like it has been done extensibly in Gieses' work\cite{pg:2014}.
+Even though the extra JavaScript metrics above are not considered in the final evaluation of our metric, they serve as an example of how to gain insights into per-commit changes of overall complexity and size, like it has been done thoroughly in Gieses' work\cite{pg:2014}.
 
 \subsection{Metric evaluation}
 The metric is aggregated from the raw commit analysis data using an SQL view called \verb=calculatedmetric=.
 
-\marginpar{A view allows us to use aggregated data without requring extra work with an additional table.}
+\marginpar{A view allows us to use aggregated data without requiring extra work with an additional table.}
 
 %\begin{lstlisting}[language=SQL, frame=false]
 %CREATE VIEW IF NOT EXISTS calculatedmetric AS
